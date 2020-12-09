@@ -98,9 +98,9 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): ?array
     {
-        return $this->roles;
+        return [$this->roles];
     }
 
     public function setRoles(string $roles): self
@@ -122,7 +122,7 @@ class User implements UserInterface, \Serializable
           return serialize(array(
               $this->id,
               $this->name,
-              $this->username, 
+              $this->surname, 
               $this->email, 
               $this->password,
               $this->roles
@@ -135,7 +135,7 @@ class User implements UserInterface, \Serializable
           list (
             $this->id,
             $this->name,
-            $this->username, 
+            $this->surname, 
             $this->email, 
             $this->password,
             $this->roles
