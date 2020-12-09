@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -41,7 +43,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $roles;
 
     public function getId(): ?int
     {
@@ -96,15 +98,59 @@ class User
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoles(): ?string
     {
-        return $this->role;
+        return $this->roles;
     }
 
-    public function setRole(string $role): self
+    public function setRoles(string $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
+
+// Custom function for UserInterface
+
+    public function eraseCredentials()
+    {
+    }
+
+      /** @see \Serializable::serialize() */
+      public function serialize()
+      {
+          return serialize(array(
+              $this->id,
+              $this->name,
+              $this->username, 
+              $this->email, 
+              $this->password,
+              $this->roles
+          ));
+      }
+  
+      /** @see \Serializable::unserialize() */
+      public function unserialize($serialized)
+      {
+          list (
+            $this->id,
+            $this->name,
+            $this->username, 
+            $this->email, 
+            $this->password,
+            $this->roles
+          ) = unserialize($serialized, array('allowed_classes' => false));
+      }
+
+      public function getSalt()
+      {
+          // you *may* need a real salt depending on your encoder
+          // see section on salt below
+          return null;
+      }
+
+      public function getUsername()
+      {
+          return $this->name . ' ' . $this->surname;
+      }
 }
