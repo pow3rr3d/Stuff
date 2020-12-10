@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
@@ -44,6 +46,22 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      */
     private $roles;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Loan::class, mappedBy="loanedBy")
+     */
+    private $loans;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Loan::class, mappedBy="borrowedBy")
+     */
+    private $borrowing;
+
+    public function __construct()
+    {
+        $this->loans = new ArrayCollection();
+        $this->borrowing = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -152,5 +170,65 @@ class User implements UserInterface, \Serializable
       public function getUsername()
       {
           return $this->name . ' ' . $this->surname;
+      }
+
+      /**
+       * @return Collection|Loan[]
+       */
+      public function getLoans(): Collection
+      {
+          return $this->loans;
+      }
+
+      public function addLoan(Loan $loan): self
+      {
+          if (!$this->loans->contains($loan)) {
+              $this->loans[] = $loan;
+              $loan->setLoanedBy($this);
+          }
+
+          return $this;
+      }
+
+      public function removeLoan(Loan $loan): self
+      {
+          if ($this->loans->removeElement($loan)) {
+              // set the owning side to null (unless already changed)
+              if ($loan->getLoanedBy() === $this) {
+                  $loan->setLoanedBy(null);
+              }
+          }
+
+          return $this;
+      }
+
+      /**
+       * @return Collection|Loan[]
+       */
+      public function getBorrowing(): Collection
+      {
+          return $this->borrowing;
+      }
+
+      public function addBorrowing(Loan $borrowing): self
+      {
+          if (!$this->borrowing->contains($borrowing)) {
+              $this->borrowing[] = $borrowing;
+              $borrowing->setBorrowedBy($this);
+          }
+
+          return $this;
+      }
+
+      public function removeBorrowing(Loan $borrowing): self
+      {
+          if ($this->borrowing->removeElement($borrowing)) {
+              // set the owning side to null (unless already changed)
+              if ($borrowing->getBorrowedBy() === $this) {
+                  $borrowing->setBorrowedBy(null);
+              }
+          }
+
+          return $this;
       }
 }

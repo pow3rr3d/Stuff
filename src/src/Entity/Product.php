@@ -43,6 +43,11 @@ class Product
      */
     private $subcategory;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Loan::class, inversedBy="product")
+     */
+    private $loan;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +109,18 @@ class Product
     public function setSubcategory(?Subcategory $subcategory): self
     {
         $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    public function getLoan(): ?Loan
+    {
+        return $this->loan;
+    }
+
+    public function setLoan(?Loan $loan): self
+    {
+        $this->loan = $loan;
 
         return $this;
     }
