@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Subcategory;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class SubcategoryFixtures extends Fixture
+class SubcategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
 
     public function load(ObjectManager $manager)
@@ -24,5 +25,9 @@ class SubcategoryFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getOrder() {
+        return 3;
     }
 }
