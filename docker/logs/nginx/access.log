@@ -1,6 +1,0 @@
-172.23.0.1 - - [18/Nov/2020:15:15:09 +0000] "GET / HTTP/1.1" 404 153 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
-172.23.0.1 - - [18/Nov/2020:15:15:09 +0000] "GET /favicon.ico HTTP/1.1" 404 153 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
-172.23.0.1 - - [18/Nov/2020:15:18:47 +0000] "GET / HTTP/1.1" 404 153 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
-172.23.0.1 - - [18/Nov/2020:15:18:49 +0000] "GET / HTTP/1.1" 404 153 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
-172.23.0.1 - - [18/Nov/2020:15:22:54 +0000] "GET / HTTP/1.1" 404 82421 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
-172.23.0.1 - - [18/Nov/2020:15:22:54 +0000] "GET /_wdt/632a42 HTTP/1.1" 200 16705 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0"
