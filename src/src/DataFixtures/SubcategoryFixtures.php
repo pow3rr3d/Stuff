@@ -14,7 +14,7 @@ class SubcategoryFixtures extends Fixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        for($i = 1; $i < 10; $i++)
+        for($i = 1; $i < 12; $i++)
         {
             $Subcategory = new Subcategory();
             $category =  $manager->getRepository(Category::class)->findBy(["name" => "Category {$i}"]);

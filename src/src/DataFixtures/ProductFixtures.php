@@ -13,7 +13,7 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 1; $i < 10; $i++)
+        for($i = 1; $i < 12; $i++)
         {
             $product = new Product();
             $Subcategory = $manager->getRepository(Subcategory::class)->findBy(["name" => "Subcategory {$i}"]);
