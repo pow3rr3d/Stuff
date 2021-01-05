@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>User</th>
                 <th>Description</th>
                 <th>State</th>
                 <th>Color</th>
@@ -21,6 +22,7 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
+                <td>{{ product.user.username }} (ID n° {{ product.user.id }})</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.state }}</td>
                 <td>{{ product.color }}</td>

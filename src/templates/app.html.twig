@@ -18,7 +18,7 @@
     {% for role in app.user.roles %}
         {% if role == "ROLE_ADMIN" %}
             <li><a href="/user">All Users</a></li>
-            <li><a href="#">All Products</a></li>
+            <li><a href="/products">All Products</a></li>
             <li><a href="/category">All Categories</a></li>
         {% endif %}
     {% endfor %}
