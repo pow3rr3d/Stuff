@@ -1,0 +1,18 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Edit account{% endblock %}
+
+{% block body %}
+    <h1>Edit Account</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('account_index', { 'id': app.user.id }) }}">back to list</a>
+
+{% endblock %}
