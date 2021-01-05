@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Subcategory::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Subcategory::class, mappedBy="category", cascade={"persist"})
      */
     private $subcategories;
 
