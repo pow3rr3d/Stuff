@@ -44,6 +44,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $this->addFlash('success', 'User '. $user->getName() .' create with successful! ');
             return $this->redirectToRoute('user_index');
         }
 
@@ -77,6 +78,7 @@ class UserController extends AbstractController
             $user->setPassword($password);
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'User '. $user->getName() .' edit with successful! ');
             return $this->redirectToRoute('user_index');
         }
 
@@ -97,6 +99,7 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('success', 'User '. $user->getName() .' delete with successful! ');
         return $this->redirectToRoute('user_index');
     }
 
