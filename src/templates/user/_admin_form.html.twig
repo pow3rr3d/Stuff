@@ -1,0 +1,4 @@
+<input type="hidden" name="_token" value="{{ csrf_token('update' ~ user.id) }}">
+<button class="btn btn-danger" data-toggle="modal"
+        data-target="#modal_admin{{ user.id }}">Make Admin
+</button>

@@ -10,7 +10,7 @@ class DashboardController extends AbstractController
 {
 
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/dashboard", name="dashboard_index")
      */
     public function index()
     {
