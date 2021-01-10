@@ -9,20 +9,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
     <ul>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/stuff">My Stuff</a></li>
+        <li><a href="{{ path('dashboard_index') }}">Dashboard</a></li>
+        <li><a href="{{ path('stuff_index') }}">My Stuff</a></li>
         <li><a href="{{ path('myloanedstuffs_index') }}">My Loaned Stuffs</a></li>
         <li><a href="#">My Loan</a></li>
         <li><a href="{{ path('account_index', { 'id': app.user.id }) }}">My Account</a></li>
 
     {% for role in app.user.roles %}
         {% if role == "ROLE_ADMIN" %}
-            <li><a href="/user">All Users</a></li>
-            <li><a href="/products">All Products</a></li>
-            <li><a href="/category">All Categories</a></li>
+            <li><a href="{{ path('user_index') }}">All Users</a></li>
+            <li><a href="{{ path('product_index') }}">All Products</a></li>
+            <li><a href="{{ path('category_index') }}">All Categories</a></li>
         {% endif %}
     {% endfor %}
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="{{ path('app_logout') }}">Logout</a></li>
     </ul>
 </head>
 <body>
