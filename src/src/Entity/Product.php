@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,6 +55,16 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=LoanArchive::class, mappedBy="product")
+     */
+    private $loanArchives;
+
+    public function __construct()
+    {
+        $this->loanArchives = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +151,33 @@ class Product
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LoanArchive[]
+     */
+    public function getLoanArchives(): Collection
+    {
+        return $this->loanArchives;
+    }
+
+    public function addLoanArchive(LoanArchive $loanArchive): self
+    {
+        if (!$this->loanArchives->contains($loanArchive)) {
+            $this->loanArchives[] = $loanArchive;
+            $loanArchive->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLoanArchive(LoanArchive $loanArchive): self
+    {
+        if ($this->loanArchives->removeElement($loanArchive)) {
+            $loanArchive->removeProduct($this);
+        }
 
         return $this;
     }

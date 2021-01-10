@@ -23,9 +23,15 @@
             <th>Products</th>
             <td>
                 <ul>
-                    {% for product in loan.product %}
-                        <li>{{ product.name }}</li>
-                    {% endfor %}
+                    {% if loan.returnAt == null %}
+                        {% for product in loan.product %}
+                            <li>{{ product.name }}</li>
+                        {% endfor %}
+                    {% else %}
+                        {% for product in loan.loanArchive.product %}
+                            <li>{{ product.name }}</li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </td>
         </tr>
@@ -49,8 +55,8 @@
     </table>
 
     <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
-
-     <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
-
-    {{ include('myLoanedStuffs/_delete_form.html.twig') }}
+    {% if loan.returnAt == null %}
+        <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+        {{ include('myLoanedStuffs/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

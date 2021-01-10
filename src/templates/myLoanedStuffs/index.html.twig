@@ -14,6 +14,7 @@
             <th>Number of Products</th>
             <th>Borrower</th>
             <th>Loaned At</th>
+            <th>State</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -23,12 +24,28 @@
                 <td>{{ loan.id }}</td>
                 <td>{{ loan.name }}</td>
                 <td>{{ loan.description }}</td>
-                <td>{{ loan.product|length }}</td>
+                <td>
+                    {% if loan.returnAt == null %}
+                        {{ loan.product|length }}
+                    {% else %}
+                        {{ loan.loanArchive.product|length }}
+                    {% endif %}
+                </td>
                 <td>{{ loan.borrowedBy.username }}</td>
                 <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
                 <td>
+                    {% if loan.returnAt == null %}
+                        In progress
+                    {% else %}
+                        Returned
+                    {% endif %}
+                </td>
+                <td>
                     <a href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}">show</a>
-                    <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+                    {% if loan.returnAt == null %}
+                        <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+                        {{ include('myLoanedStuffs/_return.html.twig') }}
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

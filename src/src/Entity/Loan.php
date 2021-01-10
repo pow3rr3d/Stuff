@@ -56,6 +56,11 @@ class Loan
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity=LoanArchive::class, mappedBy="loan", cascade={"persist", "remove"})
+     */
+    private $loanArchive;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -164,6 +169,23 @@ class Loan
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getLoanArchive(): ?LoanArchive
+    {
+        return $this->loanArchive;
+    }
+
+    public function setLoanArchive(LoanArchive $loanArchive): self
+    {
+        // set the owning side of the relation if necessary
+        if ($loanArchive->getLoan() !== $this) {
+            $loanArchive->setLoan($this);
+        }
+
+        $this->loanArchive = $loanArchive;
 
         return $this;
     }

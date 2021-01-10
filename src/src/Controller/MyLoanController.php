@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Loan;
+use App\Entity\LoanArchive;
 use App\Entity\Product;
 use App\Form\LoanType;
 use App\Repository\LoanRepository;
@@ -112,5 +113,29 @@ class MyLoanController extends AbstractController
         }
 
         return $this->redirectToRoute('myloanedstuffs_index');
+    }
+
+    /**
+     * @Route("/{id}", name="myloanedstuffs_return", methods={"PUT"})
+     */
+    public function return(Request $request, Loan $loan): Response
+    {
+        if ($this->isCsrfTokenValid('return' . $loan->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $archive = new LoanArchive();
+            $archive->setLoan($loan);
+            $products = $entityManager->getRepository(Product::class)->findBy(['loan' => $loan]);
+            foreach ($products as $product)
+            {
+                $archive->addProduct($product);
+                $product->setLoan(null);
+            }
+            $loan->setReturnAt(new \DateTime());
+            $entityManager->persist($archive);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('myloanedstuffs_show', ["id" => $loan->getId()]);
     }
 }
