@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Loan;
+use App\Entity\Product;
 use App\Form\LoanType;
 use App\Repository\LoanRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +19,9 @@ class MyLoanController extends AbstractController
 {
     /**
      * @Route("/", name="myloanedstuffs_index", methods={"GET","POST"})
+     * @return Response
      */
-    public function index(Request $request, LoanRepository $loanRepository): Response
+    public function index(): Response
     {
 
         return $this->render('myLoanedStuffs/index.html.twig', [
@@ -28,9 +31,40 @@ class MyLoanController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="myloanedstuffs_show", methods={"GET"})
+     * @Route("/new", name="myloanedstuffs_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
-    public function show(Request $request, Loan $loan, LoanRepository $loanRepository): Response
+    public function new(Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $loan = new Loan();
+        $form = $this->createForm(LoanType::class, $loan);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $loan->setLoanedBy($this->getUser());
+            foreach ($form->getData()->getProduct() as $product) {
+                $product->setLoan($form->getData());
+            }
+            $entityManager->persist($loan);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('myloanedstuffs_index');
+        }
+
+        return $this->render('myLoanedStuffs/new.html.twig', [
+            'loan' => $loan,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="myloanedstuffs_show", methods={"GET"})
+     * @param Loan $loan
+     * @return Response
+     */
+    public function show(Loan $loan): Response
     {
 
         return $this->render('myLoanedStuffs/show.html.twig', [
@@ -48,13 +82,16 @@ class MyLoanController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->getData()->getProduct() as $product) {
+                $product->setLoan($loan);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('myloanedstuffs_index');
         }
 
         return $this->render('myLoanedStuffs/edit.html.twig', [
-            'product' => $loan,
+            'loan' => $loan,
             'form' => $form->createView(),
         ]);
     }
@@ -62,9 +99,13 @@ class MyLoanController extends AbstractController
     /**
      * @Route("/{id}", name="myloanedstuffs_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Loan $loan): Response
+    public function delete(Request $request, Loan $loan, EntityManagerInterface $manager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $loan->getId(), $request->request->get('_token'))) {
+            $products = $manager->getRepository(Product::class)->findBy(["loan" => $loan]);
+            foreach ($products as $product) {
+                $product->setLoan(null);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($loan);
             $entityManager->flush();

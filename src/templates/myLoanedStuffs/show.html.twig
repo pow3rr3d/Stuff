@@ -35,18 +35,22 @@
         </tr>
         <tr>
             <th>Loaned At</th>
-            <td>{{ loan.loanedAt|date }}</td>
+            <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
         </tr>
         <tr>
             <th>Return At</th>
-            <td>{{ loan.returnAt|date }}</td>
+            {% if loan.returnAt != null %}
+                <td>{{ loan.returnAt|date("m/d/Y") }}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
         </tr>
         </tbody>
     </table>
 
-     <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
+    <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
 
-{#     <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>#}
+     <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
 
-     {{ include('myLoanedStuffs/_delete_form.html.twig') }}
+    {{ include('myLoanedStuffs/_delete_form.html.twig') }}
 {% endblock %}

@@ -25,7 +25,7 @@
                 <td>{{ loan.description }}</td>
                 <td>{{ loan.product|length }}</td>
                 <td>{{ loan.borrowedBy.username }}</td>
-                <td>{{ loan.loanedAt|date }}</td>
+                <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
                 <td>
                     <a href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}">show</a>
                     <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
@@ -39,6 +39,6 @@
         </tbody>
     </table>
 
-{#    <a href="{{ path('category_new') }}">Create new</a>#}
+    <a href="{{ path('myloanedstuffs_new') }}">Create new</a>
 
 {% endblock %}
