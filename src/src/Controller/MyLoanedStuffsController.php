@@ -6,6 +6,7 @@ use App\Entity\Loan;
 use App\Entity\LoanArchive;
 use App\Entity\Product;
 use App\Form\LoanType;
+use App\Form\ReturnLoanType;
 use App\Repository\LoanRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -116,26 +117,58 @@ class MyLoanedStuffsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="myloanedstuffs_return", methods={"PUT"})
+     * @Route("/{id}", name="myloanedstuffs_return", methods={"PUT", "POST"})
      */
     public function return(Request $request, Loan $loan): Response
     {
-        if ($this->isCsrfTokenValid('return' . $loan->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
+        $products = $entityManager->getRepository(Product::class)->findBy(["loan" => $loan]);
 
-            $archive = new LoanArchive();
-            $archive->setLoan($loan);
-            $products = $entityManager->getRepository(Product::class)->findBy(['loan' => $loan]);
-            foreach ($products as $product)
-            {
-                $archive->addProduct($product);
-                $product->setLoan(null);
-            }
-            $loan->setReturnAt(new \DateTime());
-            $entityManager->persist($archive);
-            $entityManager->flush();
+        $prod = [];
+        foreach ($products as $product) {
+            $prod[$product->getId()] = $product->getState();
         }
 
-        return $this->redirectToRoute('myloanedstuffs_show', ["id" => $loan->getId()]);
+        $form = $this->createForm(ReturnLoanType::class, $loan);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $arr = [];
+            foreach ($form->getData()->getProduct() as $item) {
+                $arr[$item->getId()] = $item->getState();
+            }
+            $diff = array_diff($prod, $arr);
+            if ($diff !== []) {
+                //Todo créer une interaction car le(s) produit(s) à été endommagé(s).
+                dump($products);
+                dump("erreur de produit => le produit a été abimé");
+                dd("____");
+                $entityManager->flush();
+            } else {
+                $archive = new LoanArchive();
+                $archive->setLoan($loan);
+                $products = $entityManager->getRepository(Product::class)->findBy(['loan' => $loan]);
+                foreach ($products as $product) {
+                    $archive->addProduct($product);
+                    $product->setLoan(null);
+                }
+                $loan->setReturnAt(new \DateTime());
+                $entityManager->persist($archive);
+                $entityManager->flush();
+
+            }
+
+
+            return $this->redirectToRoute('myloanedstuffs_index');
+        }
+
+//        if ($this->isCsrfTokenValid('return' . $loan->getId(), $request->request->get('_token'))) {
+//
+
+//        }
+
+        return $this->render('myLoans/return.html.twig', [
+            'form' => $form->createView(),
+            "id" => $loan->getId()]);
     }
 }

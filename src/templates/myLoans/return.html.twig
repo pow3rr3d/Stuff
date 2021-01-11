@@ -1,0 +1,11 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Edit Loan{% endblock %}
+
+{% block body %}
+    <h1>Edit Loan</h1>
+
+    {{ include('myLoans/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('myloans_index') }}">back to list</a>
+{% endblock %}

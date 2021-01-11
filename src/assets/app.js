@@ -25,4 +25,4 @@ a2lix_lib.sfCollection.init({
 
 //Console.log Style
 
-console.log('%c Stuff V0.0.1', 'color:green; background: #222; font-size: 24px;')
+console.log('%c Stuff V0.1.1', 'color:green; background: #222; font-size: 24px;')
