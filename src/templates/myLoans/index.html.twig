@@ -1,0 +1,54 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}My Loaned Stuffs{% endblock %}
+
+{% block body %}
+    <h1>My Loan index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Number of Products</th>
+            <th>Borrower</th>
+            <th>Loaned At</th>
+            <th>State</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for loan in user.borrowing %}
+            <tr>
+                <td>{{ loan.id }}</td>
+                <td>{{ loan.name }}</td>
+                <td>{{ loan.description }}</td>
+                <td>
+                    {% if loan.returnAt == null %}
+                        {{ loan.product|length }}
+                    {% else %}
+                        {{ loan.loanArchive.product|length }}
+                    {% endif %}
+                </td>
+                <td>{{ loan.borrowedBy.username }}</td>
+                <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
+                <td>
+                    {% if loan.returnAt == null %}
+                        In progress
+                    {% else %}
+                        Returned
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('myloans_show', {'id': loan.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

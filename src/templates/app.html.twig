@@ -12,7 +12,7 @@
         <li><a href="{{ path('dashboard_index') }}">Dashboard</a></li>
         <li><a href="{{ path('stuff_index') }}">My Stuff</a></li>
         <li><a href="{{ path('myloanedstuffs_index') }}">My Loaned Stuffs</a></li>
-        <li><a href="#">My Loan</a></li>
+        <li><a href="{{ path('myloans_index') }}">My Loan</a></li>
         <li><a href="{{ path('account_index', { 'id': app.user.id }) }}">My Account</a></li>
 
     {% for role in app.user.roles %}
