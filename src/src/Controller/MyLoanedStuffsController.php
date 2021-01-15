@@ -139,11 +139,25 @@ class MyLoanedStuffsController extends AbstractController
             }
             $diff = array_diff($prod, $arr);
             if ($diff !== []) {
+
                 //Todo créer une interaction car le(s) produit(s) à été endommagé(s).
-                dump($products);
-                dump("erreur de produit => le produit a été abimé");
-                dd("____");
-                $entityManager->flush();
+                $p = $entityManager->getRepository(Product::class)->findBy(["id" => array_keys($diff)]);
+                foreach ($p as $stuff){
+                    $stuff->setPreviousState($diff[$stuff->getId()]);
+                    dd($stuff);
+
+                }
+
+
+//                dump("erreur de produit => le produit a été abimé");
+//                dd("____");
+//                $entityManager->flush();
+                return $this->render('myLoanedStuffs/validation.html.twig', [
+                    "products" => $p,
+                    "diff" => $diff
+                ]);
+
+
             } else {
                 $archive = new LoanArchive();
                 $archive->setLoan($loan);

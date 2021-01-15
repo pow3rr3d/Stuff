@@ -1,0 +1,42 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}My Loaned Stuffs{% endblock %}
+
+{% block body %}
+    {% for product in products %}
+        <caption>
+            <h2>{{ product.name }}</h2>
+        </caption>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <td>
+                    {{ product.name }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Previous State
+                </th>
+                <td>
+                    {% if diff[product.id] != null %}
+                        {{ diff[product.id] }}
+                    {% else %}
+                        Null
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    New State
+                </th>
+                <td>
+                    {{ product.state }}
+                </td>
+            </tr>
+        </table>
+    {% endfor %}
+{% endblock %}
+
