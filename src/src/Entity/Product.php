@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -61,10 +62,15 @@ class Product
      */
     private $loanArchives;
 
+    private $previousState;
+
+    private $isNormalWear;
+
     public function __construct()
     {
         $this->loanArchives = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -181,4 +187,37 @@ class Product
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPreviousState()
+    {
+        return $this->previousState;
+    }
+
+    /**
+     * @param mixed $previousState
+     */
+    public function setPreviousState($previousState): void
+    {
+        $this->previousState = $previousState;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsNormalWear()
+    {
+        return $this->isNormalWear;
+    }
+
+    /**
+     * @param mixed $isNormalWear
+     */
+    public function setIsNormalWear($isNormalWear): void
+    {
+        $this->isNormalWear = $isNormalWear;
+    }
 }
+
