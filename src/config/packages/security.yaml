@@ -38,5 +38,5 @@ security:
         ROLE_ADMIN: [ ROLE_USER ]
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/(login|register)$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: ROLE_USER }
+        - { path: ^/(login|register)$, role: IS_AUTHENTICATED_ANONYMOUSLY,requires_channel: https }
+        - { path: ^/, role: ROLE_USER, requires_channel: https }
