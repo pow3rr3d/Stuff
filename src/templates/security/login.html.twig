@@ -14,10 +14,23 @@
         </div>
     {% endif %}
 
-    <div class="mt-5 mb-5">
-        admin@email.com/admin<br>
-        user@email.com/user
+    <div class="admin mt-5 mb-5">
+        <p class="login">
+            admin@email.com
+        </p>
+        <p class="mdp">
+            admin
+        </p>
     </div>
+    <div class="user mt-5 mb-5">
+        <p class="login">
+            user@email.com
+        </p>
+        <p class="mdp">
+            user
+        </p>
+    </div>
+
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail">Email</label>
@@ -44,4 +57,5 @@
         Sign in
     </button>
 </form>
+    {{ encore_entry_script_tags('login') }}
 {% endblock %}
