@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductsValidationType;
+use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class StuffController extends AbstractController
     public function new(Request $request): Response
     {
         $product = new Product();
-        $form = $this->createForm(ProductsValidationType::class, $product);
+        $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,7 +57,7 @@ class StuffController extends AbstractController
     public function show(Product $product): Response
     {
         return $this->render('stuff/show.html.twig', [
-            'stuff' => $product,
+            'product' => $product,
         ]);
     }
 
@@ -65,7 +66,7 @@ class StuffController extends AbstractController
      */
     public function edit(Request $request, Product $product): Response
     {
-        $form = $this->createForm(ProductsValidationType::class, $product);
+        $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,7 +76,7 @@ class StuffController extends AbstractController
         }
 
         return $this->render('stuff/edit.html.twig', [
-            'stuff' => $product,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }
