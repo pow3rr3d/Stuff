@@ -73,9 +73,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $form->get('password')->getData());
-            $entityManager = $this->getDoctrine()->getManager();
-            $user->setPassword($password);
+
+//            $password = $encoder->encodePassword($user, $form->get('password')->getData());
+            $user->setPassword($form->get('password')->getData());
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'User '. $user->getName() .' edited with successful! ');

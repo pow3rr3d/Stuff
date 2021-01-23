@@ -27,9 +27,8 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $form->get('password')->getData());
             $entityManager = $this->getDoctrine()->getManager();
-            $user->setPassword($password);
+            $user->setPassword( $form->get('password')->getData());
             $entityManager->persist($user);
             $entityManager->flush();
 
