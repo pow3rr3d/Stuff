@@ -79,6 +79,9 @@ class MyLoanedStuffsController extends AbstractController
      */
     public function edit(Request $request, Loan $loan): Response
     {
+        if ($loan->getReturnAt() !== null){
+            return $this->redirectToRoute("myloanedstuffs_index");
+        }
         $form = $this->createForm(LoanType::class, $loan);
         $form->handleRequest($request);
 
