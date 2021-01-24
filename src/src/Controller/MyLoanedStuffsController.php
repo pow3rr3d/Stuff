@@ -7,7 +7,6 @@ use App\Entity\LoanArchive;
 use App\Entity\Product;
 use App\Form\LoanType;
 use App\Form\ReturnLoanType;
-use App\Repository\LoanRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -132,31 +131,17 @@ class MyLoanedStuffsController extends AbstractController
         $form = $this->createForm(ReturnLoanType::class, $loan);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $arr = [];
             foreach ($form->getData()->getProduct() as $item) {
                 $arr[$item->getId()] = $item->getState();
             }
+
             $diff = array_diff($prod, $arr);
             if ($diff !== []) {
 
-                //Todo créer une interaction car le(s) produit(s) à été endommagé(s).
-                $p = $entityManager->getRepository(Product::class)->findBy(["id" => array_keys($diff)]);
-                foreach ($p as $stuff){
-                    $stuff->setPreviousState($diff[$stuff->getId()]);
-                    dump($stuff);
-
-                }
-                    dd("___");
-
-//                dump("erreur de produit => le produit a été abimé");
-//                dd("____");
-//                $entityManager->flush();
-                return $this->render('myLoanedStuffs/validation.html.twig', [
-                    "products" => $p,
-                    "diff" => $diff
-                ]);
-
+                $entityManager->flush();
 
             } else {
                 $archive = new LoanArchive();
@@ -175,11 +160,7 @@ class MyLoanedStuffsController extends AbstractController
 
             return $this->redirectToRoute('myloanedstuffs_index');
         }
-
-//        if ($this->isCsrfTokenValid('return' . $loan->getId(), $request->request->get('_token'))) {
-//
-
-//        }
+        
 
         return $this->render('myLoans/return.html.twig', [
             'form' => $form->createView(),
