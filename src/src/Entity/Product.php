@@ -42,7 +42,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity=Subcategory::class, inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $subcategory;
 
@@ -130,7 +130,7 @@ class Product
         return $this->subcategory;
     }
 
-    public function setSubcategory(?Subcategory $subcategory): self
+    public function setSubcategory(?Subcategory $subcategory): ?self
     {
         $this->subcategory = $subcategory;
 

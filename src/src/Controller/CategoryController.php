@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Entity\Subcategory;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
@@ -88,6 +89,10 @@ class CategoryController extends AbstractController
             }
             if (!empty($oldSub)) {
                 foreach ($oldSub as $o) {
+                    $products = $this->getDoctrine()->getRepository(Product::class)->findBy(["subcategory" => $o]);
+                    foreach ($products as $product){
+                        $product->setSubcategory(null);
+                    }
                     $category->removeSubcategory($o);
                     $this->getDoctrine()->getManager()->remove($o);
 
@@ -123,6 +128,10 @@ class CategoryController extends AbstractController
             $sub = $this->getDoctrine()->getManager()->getRepository(Subcategory::class)->findBy(["category" => $category]);
             if (!empty($sub)) {
                 foreach ($sub as $s) {
+                    $products = $this->getDoctrine()->getRepository(Product::class)->findBy(["subcategory" => $s]);
+                    foreach ($products as $product){
+                        $product->setSubcategory(null);
+                    }
                     $category->removeSubcategory($s);
                     $this->getDoctrine()->getManager()->remove($s);
 
