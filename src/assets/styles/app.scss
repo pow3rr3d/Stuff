@@ -11,6 +11,12 @@ $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, F
   font-family: 'Montserrat', sans-serif;
 }
 html {
+  h2{
+    font-size: 40px;
+    color: #616163;
+    margin-bottom: 2%;
+    font-weight: bold;
+  }
   body {
     background-color: $background;
   }
