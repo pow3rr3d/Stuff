@@ -17,6 +17,9 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@a2lix/symfony-collection": "^0.4.0"
+        "@a2lix/symfony-collection": "^0.4.0",
+        "node-sass": "^5.0.0",
+        "sass": "^1.32.5",
+        "sass-loader": "^10.1.1"
     }
 }
