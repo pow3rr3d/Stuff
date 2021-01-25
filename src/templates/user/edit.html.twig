@@ -3,22 +3,24 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
-    {% if app.user.id != user.id %}
-        {% for r in user.roles %}
-            {% if r is same as ("ROLE_USER") %}
-                {{ include('user/_admin_form.html.twig') }}
-            {% endif %}
-            {% if r is same as ("ROLE_ADMIN") %}
-                {{ include('user/_user_form.html.twig') }}
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+    <div id="corpus" class="col-9">
+        <h1>Edit User</h1>
+        {% if app.user.id != user.id %}
+            {% for r in user.roles %}
+                {% if r is same as ("ROLE_USER") %}
+                    {{ include('user/_admin_form.html.twig') }}
+                {% endif %}
+                {% if r is same as ("ROLE_ADMIN") %}
+                    {{ include('user/_user_form.html.twig') }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('user_index') }}">back to list</a>
+        <a href="{{ path('user_index') }}">back to list</a>
 
-    {{ include('user/_modal_admin.html.twig') }}
-    {{ include('user/_modal_user.html.twig') }}
+        {{ include('user/_modal_admin.html.twig') }}
+        {{ include('user/_modal_user.html.twig') }}
+    </div>
 {% endblock %}

@@ -3,59 +3,60 @@
 {% block title %}My Loaned Stuffs{% endblock %}
 
 {% block body %}
-    <h1>My Loaned Stuffs index</h1>
+    <div id="corpus" class="col-9">
+        <h1>My Loaned Stuffs index</h1>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Number of Products</th>
-            <th>Borrower</th>
-            <th>Loaned At</th>
-            <th>State</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for loan in user.loans %}
+        <table class="table">
+            <thead>
             <tr>
-                <td>{{ loan.id }}</td>
-                <td>{{ loan.name }}</td>
-                <td>{{ loan.description }}</td>
-                <td>
-                    {% if loan.returnAt == null %}
-                        {{ loan.product|length }}
-                    {% else %}
-                        {{ loan.loanArchive.product|length }}
-                    {% endif %}
-                </td>
-                <td>{{ loan.borrowedBy.username }}</td>
-                <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
-                <td>
-                    {% if loan.returnAt == null %}
-                        In progress
-                    {% else %}
-                        Returned
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}">show</a>
-                    {% if loan.returnAt == null %}
-                        <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
-                        {{ include('myLoanedStuffs/_return.html.twig') }}
-                    {% endif %}
-                </td>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Number of Products</th>
+                <th>Borrower</th>
+                <th>Loaned At</th>
+                <th>State</th>
+                <th>actions</th>
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for loan in user.loans %}
+                <tr>
+                    <td>{{ loan.id }}</td>
+                    <td>{{ loan.name }}</td>
+                    <td>{{ loan.description }}</td>
+                    <td>
+                        {% if loan.returnAt == null %}
+                            {{ loan.product|length }}
+                        {% else %}
+                            {{ loan.loanArchive.product|length }}
+                        {% endif %}
+                    </td>
+                    <td>{{ loan.borrowedBy.username }}</td>
+                    <td>{{ loan.loanedAt|date("m/d/Y") }}</td>
+                    <td>
+                        {% if loan.returnAt == null %}
+                            In progress
+                        {% else %}
+                            Returned
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}">show</a>
+                        {% if loan.returnAt == null %}
+                            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+                            {{ include('myLoanedStuffs/_return.html.twig') }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('myloanedstuffs_new') }}">Create new</a>
-
+        <a href="{{ path('myloanedstuffs_new') }}">Create new</a>
+    </div>
 {% endblock %}
