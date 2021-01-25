@@ -3,10 +3,11 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-    <h1>My Stuff index</h1>
+    <div id="corpus" class="col-9">
+        <h1>My Stuff index</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -15,27 +16,28 @@
                 <th>Color</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.state }}</td>
-                <td>{{ product.color }}</td>
-                <td>
-                    <a href="{{ path('stuff_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('stuff_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.state }}</td>
+                    <td>{{ product.color }}</td>
+                    <td>
+                        <a href="{{ path('stuff_show', {'id': product.id}) }}">show</a>
+                        <a href="{{ path('stuff_edit', {'id': product.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+        <a href="{{ path('product_new') }}">Create new</a>
+    </div>
 {% endblock %}

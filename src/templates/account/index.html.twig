@@ -3,16 +3,18 @@
 {% block title %}Edit account{% endblock %}
 
 {% block body %}
-    <h1>Edit Account</h1>
+    <div id="corpus" class="col-9">
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+        <h1>Edit Account</h1>
 
-    {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    <a href="{{ path('account_index', { 'id': app.user.id }) }}">back to list</a>
+        {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
 
+        <a href="{{ path('account_index', { 'id': app.user.id }) }}">back to list</a>
+    </div>
 {% endblock %}
