@@ -7,16 +7,47 @@ $smoothMorning: linear-gradient(330deg, #ff5f6d, #ffc371); /* W3C, IE 10+/ Edge,
 $Quepal: linear-gradient(330deg, #11998e, #38ef7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 $comicFusion: linear-gradient(150deg, #ff00cc, #333399); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-*{
+* {
   font-family: 'Montserrat', sans-serif;
 }
+
 html {
-  h2{
+  #loginDiv {
+    width: 50%;
+    background-color: white;
+    padding: 50px 100px 50px 100px;
+    border-radius: 5px;
+    margin-top: 7%;
+    margin-left: 25%;
+    border: solid 2px $border;
+    color: $a;
+
+    h1{
+      text-align: center;
+    }
+
+    .admin {
+      width: 150px;
+      border: solid 2px $border;
+    }
+
+    .user {
+      width: 150px;
+      border: solid 2px $border;
+    }
+
+    .submit {
+      margin-top: 25px;
+    }
+  }
+
+  h2 {
     font-size: 40px;
     color: #616163;
     margin-bottom: 2%;
     font-weight: bold;
   }
+
   body {
     background-color: $background;
   }
@@ -60,8 +91,9 @@ html {
 
   #groupPicto {
     display: flex;
+
     #picto {
-      display:inline-block;
+      display: inline-block;
       margin: 0 auto;
       width: 50px;
       height: 50px;
@@ -157,7 +189,7 @@ html {
       padding-bottom: 20px;
       border-bottom: solid 1px $border;
 
-      &:hover{
+      &:hover {
         background-color: $background;
       }
 

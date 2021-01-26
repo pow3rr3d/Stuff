@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <div id="loginDiv">
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -40,8 +41,7 @@
             <input type="password" name="password" id="inputPassword" class="form-control" required>
 
             <input type="hidden" name="_csrf_token"
-                   value="{{ csrf_token('authenticate') }}"
-            >
+                   value="{{ csrf_token('authenticate') }}">
 
             {#
             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -54,9 +54,10 @@
             </div>
             #}
 
-            <button class="btn btn-lg btn-primary" type="submit">
+            <button class="btn btn-lg btn-primary submit" type="submit">
                 Sign in
             </button>
         </form>
         {{ encore_entry_script_tags('login') }}
+    </div>
 {% endblock %}
