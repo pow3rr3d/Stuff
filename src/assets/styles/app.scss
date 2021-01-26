@@ -139,6 +139,8 @@ html {
   }
 
   #topbar {
+    display: flex;
+    //flex-direction: row;
     position: fixed;
     width: 100%;
     background-color: white;
@@ -146,7 +148,41 @@ html {
     z-index: 2;
     border-bottom: solid 2px $border;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+
+    .input-group{
+      width: 60%;
+      margin-right: 10%;
+      margin-left: 10%;
+    }
+
+    .dropdown{
+      padding-top: 5px;
+      a{
+        text-decoration: none ;
+        color: $a;
+        font-weight: bold;
+      }
+      .dropdown-menu{
+        width: 250px;
+        height: 100px;
+        border: none;
+        box-shadow: -1px 2px 4px -1px rgba(0,0,0,0.40);
+        li{
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: solid 2px $border;
+          padding-left: 30px;
+          &:hover {
+            background-color: $background;
+          }
+        }
+      }
+    }
+    .dropdown-menu{
+      z-index: 1 !important;
+    }
   }
 
   #ariane {
@@ -155,8 +191,8 @@ html {
     width: 100%;
     background-color: $violet;
     padding-left: 20%;
-    z-index: 2;
-    padding-top: 20px;
+    z-index: 1;
+    padding-top: 30px;
     padding-bottom: 10px;
     color: $mauve;
     opacity: 0.9;
