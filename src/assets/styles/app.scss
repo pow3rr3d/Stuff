@@ -15,6 +15,30 @@ $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, F
 }
 
 html {
+
+  table {
+    th {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+      padding-right: 50px !important;
+      padding-left: 50px !important;
+      color: $a;
+      border: none;
+    }
+
+    td {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+      padding-right: 50px !important;
+      padding-left: 50px !important;
+    }
+
+    tr:nth-of-type(even) {
+      background-color: #f3f3f3;
+    }
+
+  }
+
   #loginDiv {
     width: 50%;
     background-color: white;
@@ -268,7 +292,7 @@ html {
     margin-bottom: 0;
     top: 0;
     left: 0;
-    //border: solid 2px $border;
+    border: solid 2px $border;
 
     #firstChild {
       padding-top: 35px;
