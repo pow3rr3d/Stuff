@@ -155,6 +155,31 @@ html {
       width: 60%;
       margin-right: 10%;
       margin-left: 10%;
+
+      input{
+        background-color: $background;
+        border: solid 2px $border;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        border-right: none;
+        &:focus{
+          box-shadow: none;
+        }
+      }
+
+      #button-search{
+        background-color: $background;
+        border: solid 2px $border;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+        border-left: none;
+        &:hover{
+          color: black;
+        }
+        &:focus{
+          box-shadow: none;
+        }
+      }
     }
 
     .dropdown{
