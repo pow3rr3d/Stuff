@@ -2,6 +2,8 @@
 
 {% block title %}New Category{% endblock %}
 
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
 {% block body %}
     <div id="corpus" class="col-9">
         <h1>Create new Category</h1>

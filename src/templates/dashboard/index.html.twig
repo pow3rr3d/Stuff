@@ -2,6 +2,8 @@
 
 {% block title %}Dashboard{% endblock %}
 
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
 {% block body %}
     <div id="groupTile">
         <div id="tile">

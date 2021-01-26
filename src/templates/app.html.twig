@@ -6,7 +6,8 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('styles') }}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
-              integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+              integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+              crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -22,48 +23,50 @@
     </div>
 </div>
 <div id="ariane">
-    <b>ariane</b>
+    <p><b>Hello</b>, {{ app.user.username }}</p>
+    {% block breadcrumb %}
+    {% endblock %}
 </div>
 
 <div class="container">
     <div class="row">
-    <div class="col-3">
-        <ul id="navbar">
-            <li id="firstChild">LOGO</li>
-            <li><b><a href="{{ path('dashboard_index') }}">Dashboard</a></b></li>
-            <li><b><a href="{{ path('stuff_index') }}">My Stuff</a></b></li>
-            <li><b><a href="{{ path('myloanedstuffs_index') }}">My Loaned Stuffs</a></b></li>
-            <li><b><a href="{{ path('myloans_index') }}">My Loan</a></b></li>
-            <li><b><a href="{{ path('account_index', { 'id': app.user.id }) }}">My Account</a></b></li>
+        <div class="col-3">
+            <ul id="navbar">
+                <li id="firstChild">LOGO</li>
+                <li><b><a href="{{ path('dashboard_index') }}">Dashboard</a></b></li>
+                <li><b><a href="{{ path('stuff_index') }}">My Stuff</a></b></li>
+                <li><b><a href="{{ path('myloanedstuffs_index') }}">My Loaned Stuffs</a></b></li>
+                <li><b><a href="{{ path('myloans_index') }}">My Loan</a></b></li>
+                <li><b><a href="{{ path('account_index', { 'id': app.user.id }) }}">My Account</a></b></li>
 
-            {% for role in app.user.roles %}
-                {% if role == "ROLE_ADMIN" %}
-                    <li><b><a href="{{ path('user_index') }}">All Users</a></b></li>
-                    <li><b><a href="{{ path('product_index') }}">All Products</a></b></li>
-                    <li><b><a href="{{ path('category_index') }}">All Categories</a></b></li>
-                {% endif %}
-            {% endfor %}
-            <li><b><a href="{{ path('app_logout') }}">Logout</a></b></li>
-        </ul>
+                {% for role in app.user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                        <li><b><a href="{{ path('user_index') }}">All Users</a></b></li>
+                        <li><b><a href="{{ path('product_index') }}">All Products</a></b></li>
+                        <li><b><a href="{{ path('category_index') }}">All Categories</a></b></li>
+                    {% endif %}
+                {% endfor %}
+                <li><b><a href="{{ path('app_logout') }}">Logout</a></b></li>
+            </ul>
 
-    </div>
+        </div>
 
-    <body>
-    {% block body %}{% endblock %}
-    {% block javascripts %}
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
-        {{ encore_entry_script_tags('app') }}
+        <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+            {{ encore_entry_script_tags('app') }}
 
-    {% endblock %}
-    </body>
+        {% endblock %}
+        </body>
 
     </div>
 </div>

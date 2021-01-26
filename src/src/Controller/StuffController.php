@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/stuff")
@@ -19,8 +20,10 @@ class StuffController extends AbstractController
     /**
      * @Route("/", name="stuff_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
+
         return $this->render('stuff/index.html.twig', [
             'products' => $productRepository->findBy(["user" => $this->getUser()]),
         ]);
@@ -29,8 +32,11 @@ class StuffController extends AbstractController
     /**
      * @Route("/new", name="stuff_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
+        $breadcrumbs->addItem("New", $this->get("router")->generate("stuff_new"));
+
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -54,8 +60,11 @@ class StuffController extends AbstractController
     /**
      * @Route("/{id}", name="stuff_show", methods={"GET"})
      */
-    public function show(Product $product): Response
+    public function show(Product $product, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
+        $breadcrumbs->addItem("Show", $this->get("router")->generate("stuff_show", ["id" => $product->getId()]));
+
         return $this->render('stuff/show.html.twig', [
             'product' => $product,
         ]);
@@ -64,8 +73,11 @@ class StuffController extends AbstractController
     /**
      * @Route("/{id}/edit", name="stuff_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Product $product): Response
+    public function edit(Request $request, Product $product, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
+        $breadcrumbs->addItem("Edit", $this->get("router")->generate("stuff_edit", ["id" => $product->getId()]));
+
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
