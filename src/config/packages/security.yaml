@@ -35,8 +35,11 @@ security:
     # Note: Only the *first* access control that matches will be used
     role_hierarchy:
         ROLE_USER:
-        ROLE_ADMIN: [ ROLE_USER ]
+        ROLE_ADMIN: ROLE_USER
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/(login|register)$, role: IS_AUTHENTICATED_ANONYMOUSLY,requires_channel: https }
-        - { path: ^/, role: ROLE_USER, requires_channel: https }
+        - { path: ^/(login|register)$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+#        - { path: ^/, role: ROLE_USER }
+        - { path: ^/user, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/products, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/category, role: ROLE_ADMIN, requires_channel: https  }
