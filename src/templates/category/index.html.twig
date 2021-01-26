@@ -2,6 +2,8 @@
 
 {% block title %}Category index{% endblock %}
 
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
 {% block body %}
     <div id="corpus" class="col-9">
         <h1>Category index</h1>

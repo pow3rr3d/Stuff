@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/myloanedstuffs")
@@ -22,8 +23,9 @@ class MyLoanedStuffsController extends AbstractController
      * @Route("/", name="myloanedstuffs_index", methods={"GET","POST"})
      * @return Response
      */
-    public function index(): Response
+    public function index(Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
 
         return $this->render('myLoanedStuffs/index.html.twig', [
             'user' => $this->getUser(),
@@ -36,8 +38,11 @@ class MyLoanedStuffsController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
+        $breadcrumbs->addItem("New", $this->get("router")->generate("myloanedstuffs_new"));
+
         $entityManager = $this->getDoctrine()->getManager();
         $loan = new Loan();
         $form = $this->createForm(LoanType::class, $loan);
@@ -65,8 +70,10 @@ class MyLoanedStuffsController extends AbstractController
      * @param Loan $loan
      * @return Response
      */
-    public function show(Loan $loan): Response
+    public function show(Loan $loan, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
+        $breadcrumbs->addItem("Show", $this->get("router")->generate("myloanedstuffs_show",["id" => $loan->getId()]));
 
         return $this->render('myLoanedStuffs/show.html.twig', [
             'loan' => $loan,
@@ -77,8 +84,11 @@ class MyLoanedStuffsController extends AbstractController
     /**
      * @Route("/{id}/edit", name="myloanedstuffs_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Loan $loan): Response
+    public function edit(Request $request, Loan $loan, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
+        $breadcrumbs->addItem("Edit", $this->get("router")->generate("myloanedstuffs_edit",["id" => $loan->getId()]));
+
         if ($loan->getReturnAt() !== null){
             return $this->redirectToRoute("myloanedstuffs_index");
         }
@@ -121,8 +131,11 @@ class MyLoanedStuffsController extends AbstractController
     /**
      * @Route("/{id}", name="myloanedstuffs_return", methods={"PUT", "POST"})
      */
-    public function return(Request $request, Loan $loan): Response
+    public function return(Request $request, Loan $loan, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
+        $breadcrumbs->addItem("Return", $this->get("router")->generate("myloanedstuffs_return",["id" => $loan->getId()]));
+
         $entityManager = $this->getDoctrine()->getManager();
         $products = $entityManager->getRepository(Product::class)->findBy(["loan" => $loan]);
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd49b714d465c09858d3441e16962863",
+    "content-hash": "0157b3f57b23043217d1178800cd1ef9",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1967,78 +1967,35 @@
             "time": "2020-09-14T14:23:00+00:00"
         },
         {
-            "name": "liip/imagine-bundle",
-            "version": "2.4.0",
+            "name": "mhujer/breadcrumbs-bundle",
+            "version": "1.5.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "4704b34fb1c416f88d670e7b0427dd96cc256eac"
+                "url": "https://github.com/mhujer/BreadcrumbsBundle.git",
+                "reference": "da063792cafe2ef7777ac1c0f47c2f5ea8a4d41c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/4704b34fb1c416f88d670e7b0427dd96cc256eac",
-                "reference": "4704b34fb1c416f88d670e7b0427dd96cc256eac",
+                "url": "https://api.github.com/repos/mhujer/BreadcrumbsBundle/zipball/da063792cafe2ef7777ac1c0f47c2f5ea8a4d41c",
+                "reference": "da063792cafe2ef7777ac1c0f47c2f5ea8a4d41c",
                 "shasum": ""
             },
             "require": {
-                "imagine/imagine": "^1.1",
-                "php": "^7.1",
-                "symfony/filesystem": "^3.4|^4.3|^5.0",
-                "symfony/finder": "^3.4|^4.3|^5.0",
-                "symfony/framework-bundle": "^3.4|^4.3|^5.0",
-                "symfony/mime": "^4.3|^5.0",
-                "symfony/options-resolver": "^3.4|^4.3|^5.0",
-                "symfony/process": "^3.4|^4.3|^5.0",
-                "symfony/templating": "^3.4|^4.3|^5.0",
-                "twig/twig": "^1.40|^2.9|^3.0"
+                "php": "~7.4|~8.0",
+                "symfony/framework-bundle": "^4.4|^5.1",
+                "symfony/translation-contracts": "^1.1|^2.0",
+                "symfony/twig-bundle": "^4.4|^5.1",
+                "twig/twig": "^1.38.1|^2.7.1|^3.0"
             },
             "require-dev": {
-                "amazonwebservices/aws-sdk-for-php": "^1.0",
-                "aws/aws-sdk-php": "^2.4",
-                "doctrine/cache": "^1.1",
-                "doctrine/orm": "^2.3",
-                "enqueue/enqueue-bundle": "^0.9|^0.10",
-                "ext-gd": "*",
-                "friendsofphp/php-cs-fixer": "^2.10",
-                "league/flysystem": "^1.0",
-                "psr/log": "^1.0",
-                "symfony/browser-kit": "^3.4|^4.3|^5.0",
-                "symfony/console": "^3.4|^4.3|^5.0",
-                "symfony/dependency-injection": "^3.4|^4.3|^5.0",
-                "symfony/form": "^3.4|^4.3|^5.0",
-                "symfony/phpunit-bridge": "^5.2",
-                "symfony/validator": "^3.4|^4.3|^5.0",
-                "symfony/yaml": "^3.4|^4.3|^5.0"
-            },
-            "suggest": {
-                "alcaeus/mongo-php-adapter": "required on PHP >= 7.0 to use mongo components with mongodb extension",
-                "amazonwebservices/aws-sdk-for-php": "required to use AWS version 1 cache resolver",
-                "aws/aws-sdk-php": "required to use AWS version 2/3 cache resolver",
-                "doctrine/mongodb-odm": "required to use mongodb-backed doctrine components",
-                "enqueue/enqueue-bundle": "^0.9 add if you like to process images in background",
-                "ext-exif": "required to read EXIF metadata from images",
-                "ext-gd": "required to use gd driver",
-                "ext-gmagick": "required to use gmagick driver",
-                "ext-imagick": "required to use imagick driver",
-                "ext-mongo": "required for mongodb components on PHP <7.0",
-                "ext-mongodb": "required for mongodb components on PHP >=7.0",
-                "league/flysystem": "required to use FlySystem data loader or cache resolver",
-                "monolog/monolog": "A psr/log compatible logger is required to enable logging"
+                "phpunit/phpunit": "9.5.0",
+                "symfony/browser-kit": "^4.4|^5.1"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.0": "1.7-dev",
-                    "dev-master": "2.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Liip\\ImagineBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
+                    "WhiteOctober\\BreadcrumbsBundle\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2046,28 +2003,25 @@
             ],
             "authors": [
                 {
-                    "name": "Liip and other contributors",
-                    "homepage": "https://github.com/liip/LiipImagineBundle/contributors"
+                    "name": "Rich Sage",
+                    "email": "rich.sage@gmail.com"
+                },
+                {
+                    "name": "Martin Hujer",
+                    "email": "mail@martinhujer.cz"
                 }
             ],
-            "description": "This bundle provides an image manipulation abstraction toolkit for Symfony-based projects.",
-            "homepage": "http://liip.ch",
+            "description": "Breadcrumbs bundle for Symfony",
+            "homepage": "https://github.com/mhujer/BreadcrumbsBundle",
             "keywords": [
-                "bundle",
-                "image",
-                "imagine",
-                "liip",
-                "manipulation",
-                "photos",
-                "pictures",
-                "symfony",
-                "transformation"
+                "breadcrumbs",
+                "symfony"
             ],
             "support": {
-                "issues": "https://github.com/liip/LiipImagineBundle/issues",
-                "source": "https://github.com/liip/LiipImagineBundle/tree/2.4.0"
+                "issues": "https://github.com/mhujer/BreadcrumbsBundle/issues",
+                "source": "https://github.com/mhujer/BreadcrumbsBundle/tree/1.5.4"
             },
-            "time": "2020-12-16T07:14:53+00:00"
+            "time": "2021-01-02T19:02:12+00:00"
         },
         {
             "name": "monolog/monolog",

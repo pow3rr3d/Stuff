@@ -130,6 +130,9 @@
             "config/routes/liip_imagine.yaml"
         ]
     },
+    "mhujer/breadcrumbs-bundle": {
+        "version": "1.5.4"
+    },
     "monolog/monolog": {
         "version": "2.1.1"
     },

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 
 /**
@@ -21,8 +22,10 @@ class AccountController extends AbstractController
     /**
      * @Route("/{id}", name="account_index", methods={"GET","POST"})
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder, User $user): Response
+    public function index(Request $request, UserPasswordEncoderInterface $encoder, User $user, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("My Account", $this->get("router")->generate("account_index", ["id" => $user->getId()]));
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 /**
  * @Route("/category")
@@ -20,8 +21,10 @@ class CategoryController extends AbstractController
     /**
      * @Route("/", name="category_index", methods={"GET"})
      */
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryRepository $categoryRepository, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
+
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
@@ -30,8 +33,11 @@ class CategoryController extends AbstractController
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
+        $breadcrumbs->addItem("New", $this->get("router")->generate("category_new"));
+
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -59,8 +65,11 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{id}", name="category_show", methods={"GET"})
      */
-    public function show(Category $category): Response
+    public function show(Category $category, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
+        $breadcrumbs->addItem("Show", $this->get("router")->generate("category_show", ["id" => $category->getId()]));
+
         return $this->render('category/show.html.twig', [
             'category' => $category,
         ]);
@@ -69,8 +78,11 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{id}/edit", name="category_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Category $category): Response
+    public function edit(Request $request, Category $category, Breadcrumbs $breadcrumbs): Response
     {
+        $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
+        $breadcrumbs->addItem("Edit", $this->get("router")->generate("category_edit", ["id" => $category->getId()]));
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
