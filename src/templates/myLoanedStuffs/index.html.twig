@@ -8,12 +8,12 @@
     <div id="corpus" class="col-9">
         <h1>My Loaned Stuffs index</h1>
 
-        <table class="table">
+        <table class="table table-index">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Description</th>
+{#                <th>Description</th>#}
                 <th>Number of Products</th>
                 <th>Borrower</th>
                 <th>Loaned At</th>
@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{ loan.id }}</td>
                     <td>{{ loan.name }}</td>
-                    <td>{{ loan.description }}</td>
+{#                    <td>{{ loan.description }}</td>#}
                     <td>
                         {% if loan.returnAt == null %}
                             {{ loan.product|length }}

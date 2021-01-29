@@ -1,4 +1,5 @@
 $violet: rgb(236, 232, 255);
+$violetTable: rgba(122, 98, 208, 0.2);
 $violet2: #7a62d0;
 $mauve: #897dbb;
 $background: #f7f9fb;
@@ -15,15 +16,54 @@ $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, F
 }
 
 html {
+  h1 {
+    color: $violet2;
+  }
 
-  table {
+  .table-index {
+    max-width: 100%;
+    margin-top: 50px;
+
+    tbody tr:hover {
+      color: $violet2 !important;
+      background-color: #eaeaea;
+    }
+
+    thead {
+      background-color: $violet2;
+      color: white;
+    }
+
+    th {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+      padding-right: 50px !important;
+      padding-left: 50px !important;
+      border: none;
+    }
+
+    td {
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+      padding-right: 50px !important;
+      padding-left: 50px !important;
+    }
+
+    //tr:nth-of-type(even) {
+    //  background-color: #f3f3f3;
+    //}
+
+  }
+
+  .table-show {
+    max-width: 100%;
+
     th {
       padding-top: 20px !important;
       padding-bottom: 20px !important;
       padding-right: 50px !important;
       padding-left: 50px !important;
       color: $a;
-      border: none;
     }
 
     td {
@@ -92,12 +132,7 @@ html {
       background: $smoothMorning;
       border-radius: 1px;
       box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.40);
-      transition-duration: 0.5s;
 
-      &:hover {
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.40);
-        transition-duration: 0.5s;
-      }
 
       &1 {
         @extend #tile;
