@@ -231,7 +231,7 @@ html {
     border: solid 2px $border;
     color: $a;
 
-    a{
+    a {
       color: $violet2;
       text-decoration: none;
     }
@@ -398,22 +398,23 @@ html {
       }
     }
 
-    li {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      border-bottom: solid 1px $border;
-      transition-duration: 0.2s;
+    a {
+      text-decoration: none;
+      color: $a;
 
-      &:hover {
-        border-left: solid 5px $violet2;
-        background-color: $background;
-        transition-duration: 0.2s;
-      }
-
-      a {
+      li {
+        padding-top: 30px;
+        padding-bottom: 30px;
         padding-left: 30px;
-        text-decoration: none;
-        color: $a;
+        border-bottom: solid 1px $border;
+        transition-duration: 0.2s;
+
+        &:hover {
+          border-left: solid 5px $violet2;
+          background-color: $background;
+          transition-duration: 0.2s;
+        }
+
       }
     }
 

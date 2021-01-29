@@ -47,16 +47,16 @@
         <div class="col-3">
             <ul id="navbar">
                 <li id="firstChild">LOGO</li>
-                <li><b><a href="{{ path('dashboard_index') }}">Dashboard</a></b></li>
-                <li><b><a href="{{ path('stuff_index') }}">My Stuff</a></b></li>
-                <li><b><a href="{{ path('myloanedstuffs_index') }}">My Loaned Stuffs</a></b></li>
-                <li><b><a href="{{ path('myloans_index') }}">My Loan</a></b></li>
+                <a href="{{ path('dashboard_index') }}"><li><b>Dashboard</b></li></a>
+                <a href="{{ path('stuff_index') }}"><li><b>My Stuff</b></li></a>
+                <a href="{{ path('myloanedstuffs_index') }}"><li><b>My Loaned Stuffs</b></li></a>
+                <a href="{{ path('myloans_index') }}"><li><b>My Loan</b></li></a>
 
                 {% for role in app.user.roles %}
                     {% if role == "ROLE_ADMIN" %}
-                        <li><b><a href="{{ path('user_index') }}">All Users</a></b></li>
-                        <li><b><a href="{{ path('product_index') }}">All Products</a></b></li>
-                        <li><b><a href="{{ path('category_index') }}">All Categories</a></b></li>
+                        <a href="{{ path('user_index') }}"><li><b>All Users</b></li></a>
+                        <a href="{{ path('product_index') }}"><li><b>All Products</b></li></a>
+                        <a href="{{ path('category_index') }}"><li><b>All Categories</b></li></a>
                     {% endif %}
                 {% endfor %}
             </ul>
