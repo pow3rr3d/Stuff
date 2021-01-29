@@ -16,6 +16,7 @@ $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, F
 }
 
 html {
+
   h1 {
     color: $violet2;
   }
@@ -229,6 +230,30 @@ html {
     margin-left: 5%;
     border: solid 2px $border;
     color: $a;
+
+    input {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0px;
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: solid 1px $violet2;;
+      }
+    }
+
+    select {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0px;
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: solid 1px $violet2;;
+      }
+    }
   }
 
   #topbar {
