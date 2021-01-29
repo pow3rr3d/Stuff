@@ -59,7 +59,7 @@
 
         <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
         {% if loan.returnAt == null %}
-            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}"><i class="far fa-edit"></i></a>
             {{ include('myLoanedStuffs/_delete_form.html.twig') }}
         {% endif %}
     </div>

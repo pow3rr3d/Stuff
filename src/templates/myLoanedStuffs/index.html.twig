@@ -44,9 +44,9 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}">show</a>
+                        <a class="showLink" href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}"><i class="far fa-eye"></i></a>
                         {% if loan.returnAt == null %}
-                            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</a>
+                            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}"><i class="far fa-edit"></i></a>
                             {{ include('myLoanedStuffs/_return.html.twig') }}
                         {% endif %}
                     </td>

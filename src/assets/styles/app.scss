@@ -231,6 +231,11 @@ html {
     border: solid 2px $border;
     color: $a;
 
+    a{
+      color: $violet2;
+      text-decoration: none;
+    }
+
     input {
       border-top: none;
       border-right: none;

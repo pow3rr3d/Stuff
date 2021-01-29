@@ -44,7 +44,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{{ path('myloans_show', {'id': loan.id}) }}">show</a>
+                        <a class="showLink" href="{{ path('myloans_show', {'id': loan.id}) }}"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
             {% else %}

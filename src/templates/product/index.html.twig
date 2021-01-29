@@ -30,8 +30,8 @@
                     <td>{{ product.state }}</td>
                     <td>{{ product.color }}</td>
                     <td>
-                        <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                        <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                        <a class="showLink" href="{{ path('product_show', {'id': product.id}) }}"><i class="far fa-eye"></i></a>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="far fa-edit"></i></a>
                     </td>
                 </tr>
             {% else %}
