@@ -8,6 +8,8 @@
     <div id="corpus" class="col-9">
         <h1>Product</h1>
 
+        <a id="new" href="{{ path('product_index') }}">back to list</a>
+
         <table class="table table-show">
             <tbody>
             <tr>
@@ -36,11 +38,10 @@
             </tr>
             </tbody>
         </table>
+        <div class="btn-group">
+            <a class="btn" href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+            {{ include('product/_delete_form.html.twig') }}
+        </div>
 
-        <a href="{{ path('product_index') }}">back to list</a>
-
-        <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="far fa-edit"></i></a>
-
-        {{ include('product/_delete_form.html.twig') }}
     </div>
 {% endblock %}

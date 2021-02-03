@@ -2,14 +2,16 @@
 
 {% block title %}My Stuff{% endblock %}
 
-{% block breadcrumb%} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
 
 {% block body %}
-<div id="corpus" class="col-9">
-    <h1>Product</h1>
+    <div id="corpus" class="col-9">
+        <h1>Product</h1>
 
-    <table class="table table-show">
-        <tbody>
+        <a id="new" href="{{ path('stuff_index') }}">back to list</a>
+
+        <table class="table table-show">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ product.id }}</td>
@@ -30,13 +32,12 @@
                 <th>Color</th>
                 <td>{{ product.color }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('stuff_index') }}">back to list</a>
-
-    <a href="{{ path('stuff_edit', {'id': product.id}) }}"><i class="far fa-edit"></i></a>
-
-    {{ include('stuff/_delete_form.html.twig') }}
-</div>
+        <div class="btn-group">
+            <a class="btn" href="{{ path('stuff_edit', {'id': product.id}) }}">edit</a>
+            {{ include('stuff/_delete_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}

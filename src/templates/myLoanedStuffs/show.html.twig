@@ -8,6 +8,8 @@
     <div id="corpus" class="col-9">
         <h1>Loan n° {{ loan.id }}</h1>
 
+        <a id="new" href="{{ path('myloanedstuffs_index') }}">back to list</a>
+
         <table class="table table-show">
             <tbody>
             <tr>
@@ -56,11 +58,12 @@
             </tr>
             </tbody>
         </table>
+        <div class="btn-group">
+            {% if loan.returnAt == null %}
+                <a class="btn" href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}">edit</i></a>
+                {{ include('myLoanedStuffs/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
 
-        <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
-        {% if loan.returnAt == null %}
-            <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}"><i class="far fa-edit"></i></a>
-            {{ include('myLoanedStuffs/_delete_form.html.twig') }}
-        {% endif %}
     </div>
 {% endblock %}

@@ -7,20 +7,23 @@
 {% block body %}
     <div id="corpus" class="col-9">
         <h1>Edit User</h1>
-        {% if app.user.id != user.id %}
-            {% for r in user.roles %}
-                {% if r is same as ("ROLE_USER") %}
-                    {{ include('user/_admin_form.html.twig') }}
-                {% endif %}
-                {% if r is same as ("ROLE_ADMIN") %}
-                    {{ include('user/_user_form.html.twig') }}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+
+        <div class="btn-group" id="edit">
+            <a class="btn" href="{{ path('user_index') }}">back to list</a>
+            {% if app.user.id != user.id %}
+                {% for r in user.roles %}
+                    {% if r is same as ("ROLE_USER") %}
+                        {{ include('user/_admin_form.html.twig') }}
+                    {% endif %}
+                    {% if r is same as ("ROLE_ADMIN") %}
+                        {{ include('user/_user_form.html.twig') }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
 
         {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 
-        <a href="{{ path('user_index') }}">back to list</a>
 
         {{ include('user/_modal_admin.html.twig') }}
         {{ include('user/_modal_user.html.twig') }}
