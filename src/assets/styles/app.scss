@@ -231,6 +231,11 @@ html {
     border: solid 2px $border;
     color: $a;
 
+    #btn-return{
+      display: flex;
+      flex-direction: row;
+    }
+
     #edit{
       position: absolute;
       right: 15%;
