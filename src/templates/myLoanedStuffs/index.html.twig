@@ -8,12 +8,14 @@
     <div id="corpus" class="col-9">
         <h1>My Loaned Stuffs index</h1>
 
+        <a id="new" href="{{ path('myloanedstuffs_new') }}">Create new</a>
+
         <table class="table table-index">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-{#                <th>Description</th>#}
+                {# <th>Description</th> #}
                 <th>Number of Products</th>
                 <th>Borrower</th>
                 <th>Loaned At</th>
@@ -26,7 +28,7 @@
                 <tr>
                     <td>{{ loan.id }}</td>
                     <td>{{ loan.name }}</td>
-{#                    <td>{{ loan.description }}</td>#}
+                    {# <td>{{ loan.description }}</td> #}
                     <td>
                         {% if loan.returnAt == null %}
                             {{ loan.product|length }}
@@ -44,7 +46,8 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a class="showLink" href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}"><i class="far fa-eye"></i></a>
+                        <a class="showLink" href="{{ path('myloanedstuffs_show', {'id': loan.id}) }}"><i
+                                    class="far fa-eye"></i></a>
                         {% if loan.returnAt == null %}
                             <a href="{{ path('myloanedstuffs_edit', {'id': loan.id}) }}"><i class="far fa-edit"></i></a>
                             {{ include('myLoanedStuffs/_return.html.twig') }}
@@ -59,6 +62,5 @@
             </tbody>
         </table>
 
-        <a href="{{ path('myloanedstuffs_new') }}">Create new</a>
     </div>
 {% endblock %}

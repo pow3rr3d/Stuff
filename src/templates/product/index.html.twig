@@ -8,13 +8,15 @@
     <div id="corpus" class="col-9">
         <h1>Product index</h1>
 
+        <a id="new" href="{{ path('product_new') }}">Create new</a>
+
         <table class="table table-index">
             <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>User</th>
-{#                <th>Description</th>#}
+                {# <th>Description</th> #}
                 <th>State</th>
                 <th>Color</th>
                 <th>actions</th>
@@ -26,11 +28,12 @@
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.user.username }} (ID n° {{ product.user.id }})</td>
-{#                    <td>{{ product.description }}</td>#}
+                    {# <td>{{ product.description }}</td> #}
                     <td>{{ product.state }}</td>
                     <td>{{ product.color }}</td>
                     <td>
-                        <a class="showLink" href="{{ path('product_show', {'id': product.id}) }}"><i class="far fa-eye"></i></a>
+                        <a class="showLink" href="{{ path('product_show', {'id': product.id}) }}"><i
+                                    class="far fa-eye"></i></a>
                         <a href="{{ path('product_edit', {'id': product.id}) }}"><i class="far fa-edit"></i></a>
                     </td>
                 </tr>
@@ -41,7 +44,5 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('product_new') }}">Create new</a>
     </div>
 {% endblock %}

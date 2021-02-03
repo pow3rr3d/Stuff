@@ -23,7 +23,7 @@ html {
 
   .table-index {
     max-width: 100%;
-    margin-top: 50px;
+    margin-top: 75px;
 
     tbody tr:hover {
       color: $violet2 !important;
@@ -230,6 +230,22 @@ html {
     margin-left: 5%;
     border: solid 2px $border;
     color: $a;
+
+    #new {
+      border: solid 1px $violet2;
+      border-radius: 5px;
+      background-color: white;
+      color: $violet2;
+      position: absolute;
+      right: 20%;
+      padding: 10px;
+      transition-duration: 0.5s;
+
+      &:hover {
+        background-color: $violetTable;
+        transition-duration: 0.5s;
+      }
+    }
 
     a {
       color: $violet2;

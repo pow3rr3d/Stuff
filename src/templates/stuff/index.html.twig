@@ -8,6 +8,8 @@
     <div id="corpus" class="col-9">
         <h1>My Stuff index</h1>
 
+        <a id="new" href="{{ path('stuff_new') }}">Create new</a>
+
         <table class="table table-index">
             <thead>
             <tr>
@@ -40,6 +42,5 @@
             </tbody>
         </table>
 
-        <a href="{{ path('stuff_new') }}">Create new</a>
     </div>
 {% endblock %}
