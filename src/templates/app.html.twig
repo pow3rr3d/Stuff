@@ -31,8 +31,8 @@
         </a>
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><b><a href="{{ path('account_index', { 'id': app.user.id }) }}">My Account</a></b></li>
-            <li><b><a href="{{ path('app_logout') }}">Logout</a></b></li>
+            <li><b><a href="{{ path('account_index', { 'id': app.user.id }) }}"><i class="fas fa-user"></i> My Account</a></b></li>
+            <li><b><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></b></li>
         </ul>
     </div>
 </div>
@@ -47,16 +47,16 @@
         <div class="col-3">
             <ul id="navbar">
                 <li id="firstChild">LOGO</li>
-                <a href="{{ path('dashboard_index') }}"><li><b>Dashboard</b></li></a>
-                <a href="{{ path('stuff_index') }}"><li><b>My Stuff</b></li></a>
-                <a href="{{ path('myloanedstuffs_index') }}"><li><b>My Loaned Stuffs</b></li></a>
-                <a href="{{ path('myloans_index') }}"><li><b>My Loan</b></li></a>
+                <a href="{{ path('dashboard_index') }}"><li><b><i class="fas fa-tachometer-alt"></i> Dashboard</b></li></a>
+                <a href="{{ path('stuff_index') }}"><li><b><i class="fas fa-cube"></i> My Stuff</b></li></a>
+                <a href="{{ path('myloanedstuffs_index') }}"><li><b><i class="fas fa-random"></i> My Loaned Stuffs</b></li></a>
+                <a href="{{ path('myloans_index') }}"><li><b><i class="fas fa-random"></i> My Loan</b></li></a>
 
                 {% for role in app.user.roles %}
                     {% if role == "ROLE_ADMIN" %}
-                        <a href="{{ path('user_index') }}"><li><b>All Users</b></li></a>
-                        <a href="{{ path('product_index') }}"><li><b>All Products</b></li></a>
-                        <a href="{{ path('category_index') }}"><li><b>All Categories</b></li></a>
+                        <a href="{{ path('user_index') }}"><li><b><i class="fas fa-users"></i> All Users</b></li></a>
+                        <a href="{{ path('product_index') }}"><li><b><i class="fas fa-cubes"></i> All Products</b></li></a>
+                        <a href="{{ path('category_index') }}"><li><b><i class="fas fa-folder-open"></i> All Categories</b></li></a>
                     {% endif %}
                 {% endfor %}
             </ul>
