@@ -13,18 +13,24 @@ class SubcategoryFixtures extends Fixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $batchSize = 10;
 
-        for($i = 1; $i < 12; $i++)
+        for($i = 1; $i < 10000; $i++)
         {
             $Subcategory = new Subcategory();
-            $category =  $manager->getRepository(Category::class)->findBy(["name" => "Category {$i}"]);
+            $category =  $manager->getRepository(Category::class)->findOneBy(["name" => "Category {$i}"]);
             $Subcategory
                 ->setName("Subcategory {$i}")
-                ->setCategory($category['0']);
+                ->setCategory($category);
             $manager->persist($Subcategory);
+
+            if (($i % $batchSize) === 0) {
+                $manager->flush();
+                $manager->clear();
+            }
         }
 
-        $manager->flush();
+
     }
 
     public function getOrder() {

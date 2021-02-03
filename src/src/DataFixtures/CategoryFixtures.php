@@ -11,15 +11,23 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 1; $i < 12; $i++)
+
+        $batchSize = 10;
+
+
+        for($i = 1; $i < 10000; $i++)
         {
             $category = new Category();
             $category
                 ->setName("Category {$i}");
             $manager->persist($category);
+
+            if (($i % $batchSize) === 0) {
+                $manager->flush();
+                $manager->clear();
+            }
         }
-        
-        $manager->flush();
+
     }
 
     public function getOrder() {

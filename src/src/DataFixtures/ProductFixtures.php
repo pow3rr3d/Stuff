@@ -13,23 +13,28 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for($i = 1; $i < 12; $i++)
+
+        $batchSize = 10;
+
+        for($i = 1; $i < 10000; $i++)
         {
             $product = new Product();
-            $Subcategory = $manager->getRepository(Subcategory::class)->findBy(["name" => "Subcategory {$i}"]);
+            $Subcategory = $manager->getRepository(Subcategory::class)->findOneBy(["name" => "Subcategory {$i}"]);
             $user = $manager->getRepository(User::class)->findBy(["name" => "admin"]);
 
             $product
                 ->setName("Product {$i}")
                 ->setUser($user['0'])
                 ->setDescription("Ceci est la description du produit {$i}. Il s'agit d'un super produit.")
-                ->setSubcategory($Subcategory['0']);
-            $manager->flush();
+                ->setSubcategory($Subcategory);
 
             $manager->persist($product);
-        }
 
-        $manager->flush();
+            if (($i % $batchSize) === 0) {
+                $manager->flush();
+                $manager->clear();
+            }
+        }
 
     }
 
