@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "@a2lix/symfony-collection": "^0.4.0",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.5.1",
         "js-cookie": "^2.2.1",
         "node-sass": "^5.0.0",
         "sass": "^1.32.5",

@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('login', './assets/login.js')
+    .addEntry('cookies', './assets/cookiesModal.js')
     .addStyleEntry('styles', './assets/styles/app.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
