@@ -1,0 +1,18 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Edit Stuff{% endblock %}
+
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
+{% block body %}
+    <div id="corpus" class="col-9">
+        <h1>Edit Product</h1>
+
+        <div class="btn-group" id="edit">
+            <a class="btn" href="{{ path('stuff_index') }}">back to list</a>
+            {{ include('stuff/_delete_form.html.twig') }}
+        </div>
+
+        {{ include('stuff/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+{% endblock %}

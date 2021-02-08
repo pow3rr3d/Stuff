@@ -1,0 +1,16 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Edit Loan{% endblock %}
+
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
+{% block body %}
+    <div id="corpus" class="col-9">
+        <h1>Return Loan</h1>
+
+        <a id="new" href="{{ path('myloanedstuffs_index') }}">back to list</a>
+
+        {{ include('myLoans/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
+{% endblock %}

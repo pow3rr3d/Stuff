@@ -1,0 +1,22 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Edit account{% endblock %}
+
+{% block breadcrumb%} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
+{% block body %}
+    <div id="corpus" class="col-9">
+
+        <h1>Edit Account</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ include('account/_form.html.twig', {'button_label': 'Update'}) }}
+
+{#        <a href="{{ path('account_index', { 'id': app.user.id }) }}">back to list</a>#}
+    </div>
+{% endblock %}

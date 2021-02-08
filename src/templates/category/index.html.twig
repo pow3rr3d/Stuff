@@ -1,0 +1,48 @@
+{% extends 'app.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
+
+{% block body %}
+    <div id="corpus" class="col-9">
+        <h1>Category index ({{ pagination.getTotalItemCount }})</h1>
+
+        <a id="new" href="{{ path('category_new') }}">Create new</a>
+
+        <table class="table table-index">
+            <thead>
+            <tr>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
+                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
+                </th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in pagination %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a class="showLink" href="{{ path('category_show', {'id': category.id}) }}" title="Show"><i
+                                    class="far fa-eye"></i></a>
+                        <a href="{{ path('category_edit', {'id': category.id}) }}" title="Edit"><i class="far fa-edit"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}

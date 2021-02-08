@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Stuff - {% block title %}Welcome!{% endblock %} -</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('styles') }}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+              integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+              crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+              crossorigin="anonymous">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+</head>
+<div id="topbar">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Reasearch is coming soon..." aria-label="Searching for ..."
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-search"><i class="fas fa-search"></i>
+        </button>
+    </div>
+    <div class="dropdown">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> {{ app.user.username }}
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a href="{{ path('account_index', { 'id': app.user.id }) }}">
+                <li><b><i class="fas fa-user"></i> My Account</b></li>
+            </a>
+            <a href="{{ path('app_logout') }}">
+                <li><b><i class="fas fa-sign-out-alt"></i> Logout</b></li>
+            </a>
+        </ul>
+    </div>
+</div>
+<div id="ariane">
+    <p><b>Hello</b>, {{ app.user.username }}</p>
+    {% block breadcrumb %}
+    {% endblock %}
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <ul id="navbar">
+                <li id="firstChild">LOGO</li>
+                <a href="{{ path('dashboard_index') }}">
+                    <li><b><i class="fas fa-tachometer-alt"></i> Dashboard</b></li>
+                </a>
+                <a href="{{ path('stuff_index') }}">
+                    <li><b><i class="fas fa-cube"></i> My Stuff</b></li>
+                </a>
+                <a href="{{ path('myloanedstuffs_index') }}">
+                    <li><b><i class="fas fa-random"></i> My Loaned Stuffs</b></li>
+                </a>
+                <a href="{{ path('myloans_index') }}">
+                    <li><b><i class="fas fa-random"></i> My Loan</b></li>
+                </a>
+
+                {% for role in app.user.roles %}
+                    {% if role == "ROLE_ADMIN" %}
+                        <a href="{{ path('user_index') }}">
+                            <li><b><i class="fas fa-users"></i> All Users</b></li>
+                        </a>
+                        <a href="{{ path('product_index') }}">
+                            <li><b><i class="fas fa-cubes"></i> All Products</b></li>
+                        </a>
+                        <a href="{{ path('category_index') }}">
+                            <li><b><i class="fas fa-folder-open"></i> All Categories</b></li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <body>
+        <div class="hidden" id="return-to-top"><i class="fas fa-chevron-up"></i></div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+                    crossorigin="anonymous"></script>
+            {# <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" #}
+            {# integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" #}
+            {# crossorigin="anonymous"></script> #}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+            {# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" #}
+            {# integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" #}
+            {# crossorigin="anonymous"></script> #}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('onScroll') }}
+        {% endblock %}
+        </body>
+
+    </div>
+</div>
+</html>

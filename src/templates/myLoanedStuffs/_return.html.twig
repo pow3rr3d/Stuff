@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('myloanedstuffs_return', {'id': loan.id}) }}">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token('return' ~ loan.id) }}">
+    <button id="btn-return" class="btn">Return</button>
+</form>

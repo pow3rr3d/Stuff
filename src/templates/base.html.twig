@@ -2,11 +2,48 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>Stuff - {% block title %}Welcome!{% endblock %} -</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('styles') }}
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+                  integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+                  crossorigin="anonymous">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="modal fade bd-dark" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-sm">
+                <div id='modal' class="modal-content">
+                    <div class="m-5">
+                        <h3 class="text-center">It's Cookies Time! <i class="fas fa-cookie-bite"></i></h3>
+                        <br>
+                        <span class="text-justify">
+                            <p>
+                            L'application Stuff n'utilise pas de cookies dit "de tracking".
+                            </p>
+                            <p>
+                            Les seuls cookies présents servent au bon fonctionnement de l'application.
+                            Merci de les valider en intégralités avant de poursuivre.
+                            </p>
+                        </span>
+                        <br>
+                        <div class="d-flex justify-content-around">
+                            <button id="CookiesRefuse" class="btn btn-danger">Retour</button>
+                            <button id="CookiesValidation" class="btn btn-primary">Valider</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        {% endblock %}
+        {{ encore_entry_script_tags('cookies') }}
+        {{ encore_entry_script_tags('app') }}
     </body>
 </html>
