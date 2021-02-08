@@ -6,6 +6,8 @@ use App\Entity\Product;
 use App\Form\ProductsValidationType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,12 +22,23 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="product_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository, Breadcrumbs $breadcrumbs): Response
+    public function index(ProductRepository $productRepository, Breadcrumbs $breadcrumbs, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         $breadcrumbs->addItem("Products", $this->get("router")->generate("product_index"));
 
+        $qb = $em->createQueryBuilder();
+        $qb->select('s.name, s.id, s.state, s.color')
+            ->from('App\Entity\Product', 's');
+
+
+        $pagination = $paginator->paginate(
+            $qb->getQuery(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'pagination' => $pagination
         ]);
     }
 

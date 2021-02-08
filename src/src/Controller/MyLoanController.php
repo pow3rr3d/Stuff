@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Form\LoanType;
 use App\Repository\LoanRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,12 +24,24 @@ class MyLoanController extends AbstractController
      * @Route("/", name="myloans_index", methods={"GET","POST"})
      * @return Response
      */
-    public function index(Breadcrumbs $breadcrumbs): Response
+    public function index(Breadcrumbs $breadcrumbs, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         $breadcrumbs->addItem("My Loans", $this->get("router")->generate("myloans_index"));
 
+        $qb = $em->createQueryBuilder();
+        $qb->select('s')
+            ->from('App\Entity\Loan', 's')
+            ->where('s.borrowedBy = :user')
+            ->setParameter('user', $this->getUser()->getId())
+        ;
+        $pagination = $paginator->paginate(
+            $qb->getQuery(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('myLoans/index.html.twig', [
-            'user' => $this->getUser(),
+            'pagination' => $pagination
         ]);
 
     }

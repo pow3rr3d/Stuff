@@ -8,41 +8,45 @@
     <div id="corpus" class="col-9">
         <h1>Product index</h1>
 
-{#        <a id="new" href="{{ path('product_new') }}">Create new</a>#}
+        {# <a id="new" href="{{ path('product_new') }}">Create new</a> #}
 
         <table class="table table-index">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>User</th>
-                {# <th>Description</th> #}
-                <th>State</th>
-                <th>Color</th>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
+                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
+                </th>
+                <th{% if pagination.isSorted('s.state') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'State', 's.state') }}
+                </th>
+                <th{% if pagination.isSorted('s.color') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Color', 's.color') }}
+                </th>
                 <th>actions</th>
             </tr>
             </thead>
-            <tbody>
-            {% for product in products %}
-                <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.user.username }} (ID n° {{ product.user.id }})</td>
-                    {# <td>{{ product.description }}</td> #}
-                    <td>{{ product.state }}</td>
-                    <td>{{ product.color }}</td>
+
+            {# table body #}
+            {% for stuff in pagination %}
+                <tr {% if loop.index is odd %}class="color"{% endif %}>
+                    <td>{{ stuff.id }}</td>
+                    <td>{{ stuff.name }}</td>
+                    <td>{{ stuff.state }}</td>
+                    <td>{{ stuff.color }}</td>
                     <td>
-                        <a class="showLink" href="{{ path('product_show', {'id': product.id}) }}" title="Show"><i
+                        <a class="showLink" href="{{ path('stuff_show', {'id': stuff.id }) }}" title="Show"><i
                                     class="far fa-eye"></i></a>
-                        <a href="{{ path('product_edit', {'id': product.id}) }}" title="Edit"><i class="far fa-edit"></i></a>
+                        <a href="{{ path('stuff_edit', {'id': stuff.id}) }}" title="Edit"><i
+                                    class="far fa-edit"></i></a>
                     </td>
                 </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6">no records found</td>
-                </tr>
             {% endfor %}
-            </tbody>
         </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}

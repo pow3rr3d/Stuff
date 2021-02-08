@@ -7,6 +7,8 @@ use App\Entity\Product;
 use App\Entity\Subcategory;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,12 +23,23 @@ class CategoryController extends AbstractController
     /**
      * @Route("/", name="category_index", methods={"GET"})
      */
-    public function index(CategoryRepository $categoryRepository, Breadcrumbs $breadcrumbs): Response
+    public function index(Breadcrumbs $breadcrumbs, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
 
+        $qb = $em->createQueryBuilder();
+        $qb->select('s.name, s.id')
+            ->from('App\Entity\Category', 's');
+
+
+        $pagination = $paginator->paginate(
+            $qb->getQuery(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('category/index.html.twig', [
-            'categories' => $categoryRepository->findAll(),
+            'pagination' => $pagination
         ]);
     }
 

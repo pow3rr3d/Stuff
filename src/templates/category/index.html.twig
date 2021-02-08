@@ -13,13 +13,16 @@
         <table class="table table-index">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                {# sorting of properties based on query components #}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
+                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
+                </th>
                 <th>actions</th>
             </tr>
             </thead>
             <tbody>
-            {% for category in categories %}
+            {% for category in pagination %}
                 <tr>
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
@@ -37,5 +40,9 @@
             </tbody>
         </table>
 
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}

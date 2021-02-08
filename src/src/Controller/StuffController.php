@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Form\ProductsValidationType;
 use App\Form\ProductType;
-use App\Repository\ProductRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
+
 
 /**
  * @Route("/stuff")
@@ -20,19 +21,31 @@ class StuffController extends AbstractController
     /**
      * @Route("/", name="stuff_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository, Breadcrumbs $breadcrumbs): Response
+    public function index(Breadcrumbs $breadcrumbs, EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
 
+        $qb = $em->createQueryBuilder();
+        $qb->select('s.name, s.id, s.state, s.color')
+            ->from('App\Entity\Product', 's')
+            ->where('s.user =:user')
+            ->setParameter('user', $this->getUser()->getId())
+;
+        $pagination = $paginator->paginate(
+            $qb->getQuery(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('stuff/index.html.twig', [
-            'products' => $productRepository->findBy(["user" => $this->getUser()]),
+            'pagination' => $pagination
         ]);
     }
 
     /**
      * @Route("/new", name="stuff_new", methods={"GET","POST"})
      */
-    public function new(Request $request,Breadcrumbs $breadcrumbs): Response
+    public function new(Request $request, Breadcrumbs $breadcrumbs): Response
     {
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
         $breadcrumbs->addItem("New", $this->get("router")->generate("stuff_new"));
@@ -98,7 +111,7 @@ class StuffController extends AbstractController
      */
     public function delete(Request $request, Product $product): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
