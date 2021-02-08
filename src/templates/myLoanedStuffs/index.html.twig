@@ -6,7 +6,7 @@
 
 {% block body %}
     <div id="corpus" class="col-9">
-        <h1>My Loaned Stuffs index</h1>
+        <h1>My Loaned Stuffs index ({{ pagination.getTotalItemCount }})</h1>
 
         <a id="new" href="{{ path('myloanedstuffs_new') }}">Create new</a>
 

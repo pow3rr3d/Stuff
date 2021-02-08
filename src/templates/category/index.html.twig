@@ -6,7 +6,7 @@
 
 {% block body %}
     <div id="corpus" class="col-9">
-        <h1>Category index</h1>
+        <h1>Category index ({{ pagination.getTotalItemCount }})</h1>
 
         <a id="new" href="{{ path('category_new') }}">Create new</a>
 
