@@ -8,8 +8,9 @@
     <div id="corpus" class="col-9">
         <h1>Create new loan</h1>
 
+        <a id="new" href="{{ path('myloanedstuffs_index') }}">back to list</a>
+
         {{ include('myLoanedStuffs/_form.html.twig') }}
 
-        <a href="{{ path('myloanedstuffs_index') }}">back to list</a>
     </div>
 {% endblock %}
