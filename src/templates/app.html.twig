@@ -82,6 +82,7 @@
         </div>
 
         <body>
+        <div class="hidden" id="return-to-top"><i class="fas fa-chevron-up"></i></div>
         {% block body %}{% endblock %}
         {% block javascripts %}
             <!-- JavaScript Bundle with Popper -->
@@ -98,7 +99,7 @@
             {# integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" #}
             {# crossorigin="anonymous"></script> #}
             {{ encore_entry_script_tags('app') }}
-
+            {{ encore_entry_script_tags('onScroll') }}
         {% endblock %}
         </body>
 
