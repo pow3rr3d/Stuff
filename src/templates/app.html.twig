@@ -31,8 +31,12 @@
         </a>
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><b><a href="{{ path('account_index', { 'id': app.user.id }) }}"><i class="fas fa-user"></i> My Account</a></b></li>
-            <li><b><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></b></li>
+            <a href="{{ path('account_index', { 'id': app.user.id }) }}">
+                <li><b><i class="fas fa-user"></i> My Account</b></li>
+            </a>
+            <a href="{{ path('app_logout') }}">
+                <li><b><i class="fas fa-sign-out-alt"></i> Logout</b></li>
+            </a>
         </ul>
     </div>
 </div>
@@ -47,16 +51,30 @@
         <div class="col-3">
             <ul id="navbar">
                 <li id="firstChild">LOGO</li>
-                <a href="{{ path('dashboard_index') }}"><li><b><i class="fas fa-tachometer-alt"></i> Dashboard</b></li></a>
-                <a href="{{ path('stuff_index') }}"><li><b><i class="fas fa-cube"></i> My Stuff</b></li></a>
-                <a href="{{ path('myloanedstuffs_index') }}"><li><b><i class="fas fa-random"></i> My Loaned Stuffs</b></li></a>
-                <a href="{{ path('myloans_index') }}"><li><b><i class="fas fa-random"></i> My Loan</b></li></a>
+                <a href="{{ path('dashboard_index') }}">
+                    <li><b><i class="fas fa-tachometer-alt"></i> Dashboard</b></li>
+                </a>
+                <a href="{{ path('stuff_index') }}">
+                    <li><b><i class="fas fa-cube"></i> My Stuff</b></li>
+                </a>
+                <a href="{{ path('myloanedstuffs_index') }}">
+                    <li><b><i class="fas fa-random"></i> My Loaned Stuffs</b></li>
+                </a>
+                <a href="{{ path('myloans_index') }}">
+                    <li><b><i class="fas fa-random"></i> My Loan</b></li>
+                </a>
 
                 {% for role in app.user.roles %}
                     {% if role == "ROLE_ADMIN" %}
-                        <a href="{{ path('user_index') }}"><li><b><i class="fas fa-users"></i> All Users</b></li></a>
-                        <a href="{{ path('product_index') }}"><li><b><i class="fas fa-cubes"></i> All Products</b></li></a>
-                        <a href="{{ path('category_index') }}"><li><b><i class="fas fa-folder-open"></i> All Categories</b></li></a>
+                        <a href="{{ path('user_index') }}">
+                            <li><b><i class="fas fa-users"></i> All Users</b></li>
+                        </a>
+                        <a href="{{ path('product_index') }}">
+                            <li><b><i class="fas fa-cubes"></i> All Products</b></li>
+                        </a>
+                        <a href="{{ path('category_index') }}">
+                            <li><b><i class="fas fa-folder-open"></i> All Categories</b></li>
+                        </a>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -70,15 +88,15 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
                     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
                     crossorigin="anonymous"></script>
-{#            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"#}
-{#                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"#}
-{#                    crossorigin="anonymous"></script>#}
+            {# <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" #}
+            {# integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" #}
+            {# crossorigin="anonymous"></script> #}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                     crossorigin="anonymous"></script>
-{#            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"#}
-{#                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"#}
-{#                    crossorigin="anonymous"></script>#}
+            {# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" #}
+            {# integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" #}
+            {# crossorigin="anonymous"></script> #}
             {{ encore_entry_script_tags('app') }}
 
         {% endblock %}
