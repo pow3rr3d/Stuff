@@ -16,7 +16,6 @@ $Neuromancer: linear-gradient(150deg, #f953c6, #b91d73); /* W3C, IE 10+/ Edge, F
 }
 
 html {
-
   .navigation {
     margin-left: 70%;
     padding-top: 5%;
@@ -156,18 +155,47 @@ html {
     border: solid 2px $border;
     color: $a;
 
+    #logoLogin {
+      display: block;
+      margin-top: 10%;
+      margin-bottom: 10%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      border: solid 1px $violet2;
+      border-radius: 5px;
+      background-color: white;
+      color: $violet2;
+      //position: absolute;
+      //right: 20%;
+      padding: 10px;
+      transition-duration: 0.5s;
+
+      &:hover {
+        background-color: $violetTable;
+        transition-duration: 0.5s;
+      }
+    }
+
     h1 {
       text-align: center;
     }
 
-    .admin {
-      width: 150px;
-      border: solid 2px $border;
-    }
+    .parent {
 
-    .user {
-      width: 150px;
-      border: solid 2px $border;
+      .admin {
+        display: inline-block;
+        width: 150px;
+        border: solid 2px $border;
+      }
+
+      .user {
+        display: inline-block;
+        width: 150px;
+        border: solid 2px $border;
+      }
     }
 
     .submit {

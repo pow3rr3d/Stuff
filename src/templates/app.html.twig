@@ -50,7 +50,9 @@
     <div class="row">
         <div class="col-3">
             <ul id="navbar">
-                <li id="firstChild">LOGO</li>
+                <li id="firstChild">
+                    <img src="{{ asset("build/images/logo.png")|imagine_filter("logo") }}" alt="A Test Logo">
+                </li>
                 <a href="{{ path('dashboard_index') }}">
                     <li><b><i class="fas fa-tachometer-alt"></i> Dashboard</b></li>
                 </a>
