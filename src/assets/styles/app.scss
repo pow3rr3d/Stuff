@@ -268,37 +268,45 @@ html {
   #groupTile {
     display: flex;
 
-    #tile {
+    #tileLinks {
       margin-top: 15%;
-      margin-bottom: - 13%;
+      margin-bottom: -12%;
       margin-left: 4.5%;
       margin-right: 1%;
-      min-width: 275px;
-      height: 150px;
-      background: $smoothMorning;
-      border-radius: 1px;
-      box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.40);
+      text-decoration: none;
 
+      #tile {
+        min-width: 275px;
+        height: 150px;
+        background: $smoothMorning;
+        border-radius: 1px;
+        box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.40);
 
-      &1 {
-        @extend #tile;
-        background: $Quepal;
-      }
+        &1 {
+          @extend #tile;
+          background: $Quepal;
+        }
 
-      &2 {
-        @extend #tile;
-        background: $comicFusion;
-      }
+        &2 {
+          @extend #tile;
+          background: $comicFusion;
+        }
 
-      &3 {
-        @extend #tile;
-        background: $Neuromancer;
-      }
+        &3 {
+          @extend #tile;
+          background: $Neuromancer;
+        }
 
-      p {
-        color: white;
-        padding-left: 10px;
-        padding-top: 10px;
+        p {
+          padding-top: 30px;
+          font-size: 1.5em;
+          text-align: center;
+          color: white;
+          &.nb{
+            margin-top: -40px;
+
+          }
+        }
       }
     }
   }
@@ -346,259 +354,260 @@ html {
 
       }
     }
-    .text{
+
+    .text {
       text-align: justify;
     }
   }
 
 
-#corpus {
-  width: 100%;
-  background-color: white;
-  padding: 50px 100px 50px 100px;
-  border-radius: 5px;
-  margin-top: 15%;
-  margin-bottom: 10%;
-  margin-left: 5%;
-  border: solid 2px $border;
-  color: $a;
-
-  #btn-return {
-    display: flex;
-    flex-direction: row;
-  }
-
-  #edit {
-    position: absolute;
-    right: 15%;
-    margin-top: -50px;
-  }
-
-
-  #new {
-    border: solid 1px $violet2;
-    border-radius: 5px;
+  #corpus {
+    width: 100%;
     background-color: white;
-    color: $violet2;
-    position: absolute;
-    right: 20%;
-    padding: 10px;
-    transition-duration: 0.5s;
-
-    &:hover {
-      background-color: $violetTable;
-      transition-duration: 0.5s;
-    }
-  }
-
-  .btn {
-    border: solid 1px $violet2;
+    padding: 50px 100px 50px 100px;
     border-radius: 5px;
-    background-color: white;
-    color: $violet2;
-    margin-right: 10px;
-    //display: flex;
-    //flex-direction: row;
-    //right: 20%;
-    padding: 10px;
-    margin-top: 20px;
-    transition-duration: 0.5s;
+    margin-top: 15%;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    border: solid 2px $border;
+    color: $a;
 
-    &:hover {
-      background-color: $violetTable;
+    #btn-return {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #edit {
+      position: absolute;
+      right: 15%;
+      margin-top: -50px;
+    }
+
+
+    #new {
+      border: solid 1px $violet2;
+      border-radius: 5px;
+      background-color: white;
+      color: $violet2;
+      position: absolute;
+      right: 20%;
+      padding: 10px;
       transition-duration: 0.5s;
-    }
-  }
-
-  a {
-    color: $violet2;
-    text-decoration: none;
-  }
-
-
-  input {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-radius: 0px;
-
-    &:focus {
-      box-shadow: none;
-      border-bottom: solid 1px $violet2;;
-    }
-  }
-
-  select {
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-radius: 0px;
-
-    &:focus {
-      box-shadow: none;
-      border-bottom: solid 1px $violet2;;
-    }
-  }
-}
-
-#topbar {
-  display: flex;
-  //flex-direction: row;
-  position: fixed;
-  width: 100%;
-  background-color: white;
-  padding-left: 20%;
-  z-index: 2;
-  border-bottom: solid 2px $border;
-  padding-top: 20px;
-  padding-bottom: 5px;
-  margin: 0 auto;
-
-  .input-group {
-    width: 60%;
-    margin-right: 10%;
-    margin-left: 10%;
-
-    input {
-      background-color: $background;
-      border: solid 2px $border;
-      border-bottom-left-radius: 20px;
-      border-top-left-radius: 20px;
-      border-right: none;
-
-      &:focus {
-        box-shadow: none;
-      }
-    }
-
-    #button-search {
-      background-color: $background;
-      border: solid 2px $border;
-      border-bottom-right-radius: 20px;
-      border-top-right-radius: 20px;
-      border-left: none;
 
       &:hover {
-        color: black;
+        background-color: $violetTable;
         transition-duration: 0.5s;
       }
+    }
+
+    .btn {
+      border: solid 1px $violet2;
+      border-radius: 5px;
+      background-color: white;
+      color: $violet2;
+      margin-right: 10px;
+      //display: flex;
+      //flex-direction: row;
+      //right: 20%;
+      padding: 10px;
+      margin-top: 20px;
+      transition-duration: 0.5s;
+
+      &:hover {
+        background-color: $violetTable;
+        transition-duration: 0.5s;
+      }
+    }
+
+    a {
+      color: $violet2;
+      text-decoration: none;
+    }
+
+
+    input {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0px;
 
       &:focus {
         box-shadow: none;
+        border-bottom: solid 1px $violet2;;
+      }
+    }
+
+    select {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-radius: 0px;
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: solid 1px $violet2;;
       }
     }
   }
 
-  .dropdown {
-    padding-top: 5px;
+  #topbar {
+    display: flex;
+    //flex-direction: row;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    padding-left: 20%;
+    z-index: 2;
+    border-bottom: solid 2px $border;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    margin: 0 auto;
+
+    .input-group {
+      width: 60%;
+      margin-right: 10%;
+      margin-left: 10%;
+
+      input {
+        background-color: $background;
+        border: solid 2px $border;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        border-right: none;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      #button-search {
+        background-color: $background;
+        border: solid 2px $border;
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+        border-left: none;
+
+        &:hover {
+          color: black;
+          transition-duration: 0.5s;
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .dropdown {
+      padding-top: 5px;
+
+      a {
+        text-decoration: none;
+        color: $a;
+        font-weight: bold;
+      }
+
+      .dropdown-menu {
+        width: 250px;
+        height: 100px;
+        border: none;
+        box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.40);
+
+        li {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: solid 2px $border;
+          padding-left: 30px;
+          transition-duration: 0.2s;
+
+          &:hover {
+            border-left: solid 5px $violet2;
+            transition-duration: 0.2s;
+            background-color: $background;
+          }
+        }
+      }
+    }
+
+    .dropdown-menu {
+      z-index: 1 !important;
+    }
+  }
+
+  #ariane {
+    top: 66px;
+    position: fixed;
+    width: 100%;
+    background-color: $violet;
+    padding-left: 20%;
+    z-index: 1;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    color: $mauve;
+    opacity: 0.9;
+    display: flex;
+
+    #breadcrumbs {
+      margin: 0 auto;
+      margin-left: 70%;
+
+      a {
+        text-decoration: none;
+        color: $mauve;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+  #navbar {
+    z-index: 3;
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    list-style-type: none;
+    background: white;
+    padding-left: 0;
+    margin-bottom: 0;
+    top: 0;
+    left: 0;
+    border: solid 2px $border;
+
+    #firstChild {
+      padding-top: 35px;
+      padding-bottom: 35px;
+      border-bottom: solid 1px $border;
+      text-align: center;
+      text-decoration: none;
+      color: $a;
+
+      &:hover {
+        border-left: none;
+        background-color: white;
+      }
+    }
 
     a {
       text-decoration: none;
       color: $a;
-      font-weight: bold;
-    }
-
-    .dropdown-menu {
-      width: 250px;
-      height: 100px;
-      border: none;
-      box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.40);
 
       li {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-bottom: solid 2px $border;
+        padding-top: 30px;
+        padding-bottom: 30px;
         padding-left: 30px;
+        border-bottom: solid 1px $border;
         transition-duration: 0.2s;
 
         &:hover {
           border-left: solid 5px $violet2;
-          transition-duration: 0.2s;
           background-color: $background;
+          transition-duration: 0.2s;
         }
+
       }
     }
+
   }
-
-  .dropdown-menu {
-    z-index: 1 !important;
-  }
-}
-
-#ariane {
-  top: 66px;
-  position: fixed;
-  width: 100%;
-  background-color: $violet;
-  padding-left: 20%;
-  z-index: 1;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  color: $mauve;
-  opacity: 0.9;
-  display: flex;
-
-  #breadcrumbs {
-    margin: 0 auto;
-    margin-left: 70%;
-
-    a {
-      text-decoration: none;
-      color: $mauve;
-      font-weight: bold;
-    }
-  }
-
-}
-
-#navbar {
-  z-index: 3;
-  position: fixed;
-  width: 15%;
-  height: 100%;
-  list-style-type: none;
-  background: white;
-  padding-left: 0;
-  margin-bottom: 0;
-  top: 0;
-  left: 0;
-  border: solid 2px $border;
-
-  #firstChild {
-    padding-top: 35px;
-    padding-bottom: 35px;
-    border-bottom: solid 1px $border;
-    text-align: center;
-    text-decoration: none;
-    color: $a;
-
-    &:hover {
-      border-left: none;
-      background-color: white;
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: $a;
-
-    li {
-      padding-top: 30px;
-      padding-bottom: 30px;
-      padding-left: 30px;
-      border-bottom: solid 1px $border;
-      transition-duration: 0.2s;
-
-      &:hover {
-        border-left: solid 5px $violet2;
-        background-color: $background;
-        transition-duration: 0.2s;
-      }
-
-    }
-  }
-
-}
 
 }
 

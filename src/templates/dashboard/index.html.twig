@@ -6,19 +6,38 @@
 
 {% block body %}
     <div id="groupTile">
-        <div id="tile">
-            <p>test</p>
-        </div>
-        <div id="tile1">
-            <p>test</p>
-        </div>
-        <div id="tile2">
-            <p>test</p>
-        </div>
-        <div id="tile3">
-            <p>test</p>
-        </div>
+
+        <a id="tileLinks" href="{{ path('stuff_index') }}">
+            <div id="tile">
+                <p>My Stuffs</p>
+                <p class="nb">{{ products|length }}</p>
+            </div>
+        </a>
+
+        <a id="tileLinks" href="{{ path('myloanedstuffs_index') }}">
+            <div id="tile1">
+                <p>My Loaned Stuffs </p>
+                <p class="nb">{{ loanedProducts|length }}</p>
+            </div>
+        </a>
+
+        <a id="tileLinks" href="{{ path('myloans_index') }}">
+            <div id="tile2">
+                {# <a href="{{ path('myloans_index') }}"> #}
+                <p>My loans </p>
+                <p class="nb">{{ loans|length }}</p>
+            </div>
+        </a>
+
+        <a id="tileLinks" href="#">
+            <div id="tile3">
+                <p>test</p>
+                <p class="nb">test</p>
+            </div>
+        </a>
+
     </div>
+
     <div id="corpus" class="col-9">
         <h2>Title</h2>
         <div id="groupPicto">
