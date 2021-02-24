@@ -2,6 +2,13 @@
 
 {% block title %}Category index{% endblock %}
 
+{% block search %}
+    {{ form_start(form) }}
+    {{ form_widget(form.name) }}
+    <button class="btn btn-outline-secondary" type="submit" id="button-search"><i class="fas fa-search"></i></button>
+    {{ form_end(form) }}
+{% endblock %}
+
 {% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
 
 {% block body %}

@@ -14,11 +14,28 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    private $user;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
+    public function getAllQuery(User $search)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        if ($search->getName() !== null) {
+            $qb
+                ->andWhere($qb->expr()->like('s.name' , ':name'))
+                ->orWhere($qb->expr()->like('s.surname' , ':name'))
+                ->orWhere($qb->expr()->like('s.email' , ':name'))
+                ->orWhere($qb->expr()->like('s.id' , ':name'))
+                ->setParameter('name', '%'.$search->getName().'%');
+        }
+
+        return $qb->getQuery();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

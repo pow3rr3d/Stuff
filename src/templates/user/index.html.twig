@@ -2,6 +2,13 @@
 
 {% block title %}User index{% endblock %}
 
+{% block search %}
+    {{ form_start(form) }}
+    {{ form_widget(form.name) }}
+    <button class="btn btn-outline-secondary" type="submit" id="button-search"><i class="fas fa-search"></i></button>
+    {{ form_end(form) }}
+{% endblock %}
+
 {% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
 
 {% block body %}
@@ -43,7 +50,11 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.surname }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.roles }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            {{ role }}
+                        {% endfor %}
+                    </td>
                     <td>
                         <a class="showLink" href="{{ path('user_show', {'id': user.id}) }}" title="Show"><i
                                     class="far fa-eye"></i></a>
@@ -52,7 +63,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="7">no records found</td>
+                    <td colspan="6">no records found</td>
                 </tr>
             {% endfor %}
             </tbody>

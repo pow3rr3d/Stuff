@@ -2,6 +2,13 @@
 
 {% block title %}Product index{% endblock %}
 
+{% block search %}
+    {{ form_start(form) }}
+    {{ form_widget(form.name) }}
+    <button class="btn btn-outline-secondary" type="submit" id="button-search"><i class="fas fa-search"></i></button>
+    {{ form_end(form) }}
+{% endblock %}
+
 {% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
 
 {% block body %}
@@ -30,6 +37,7 @@
             </thead>
 
             {# table body #}
+            <tbody>
             {% for stuff in pagination %}
                 <tr {% if loop.index is odd %}class="color"{% endif %}>
                     <td>{{ stuff.id }}</td>
@@ -43,7 +51,12 @@
                                     class="far fa-edit"></i></a>
                     </td>
                 </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
 
         {# display navigation #}

@@ -6,6 +6,7 @@ use App\Entity\Loan;
 use App\Entity\LoanArchive;
 use App\Entity\Product;
 use App\Form\LoanType;
+use App\Form\MyLoanedStuffsSearchType;
 use App\Form\ReturnLoanType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -28,20 +29,20 @@ class MyLoanedStuffsController extends AbstractController
     {
         $breadcrumbs->addItem("My Loaned Stuffs", $this->get("router")->generate("myloanedstuffs_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('s')
-            ->from('App\Entity\Loan', 's')
-            ->where('s.loanedBy = :user')
-            ->setParameter('user', $this->getUser()->getId())
-        ;
+        $search = new Loan();
+        $form = $this->createForm(MyLoanedStuffsSearchType::class, $search);
+        $form->handleRequest($request);
+
+
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(Loan::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
         return $this->render('myLoanedStuffs/index.html.twig', [
             'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
 
     }

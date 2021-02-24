@@ -17,12 +17,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
 </head>
+
 <div id="topbar">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Reasearch is coming soon..." aria-label="Searching for ..."
-               aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-search"><i class="fas fa-search"></i>
-        </button>
+        {% block search %}
+        {% endblock %}
     </div>
     <div class="dropdown">
         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -40,6 +39,7 @@
         </ul>
     </div>
 </div>
+
 <div id="ariane">
     <p><b>Hello</b>, {{ app.user.username }}</p>
     {% block breadcrumb %}

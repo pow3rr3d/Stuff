@@ -360,6 +360,9 @@ html {
     }
   }
 
+  form{
+    margin-top: 5%;
+  }
 
   #corpus {
     width: 100%;
@@ -465,9 +468,15 @@ html {
 
     .input-group {
       width: 60%;
+      height: 40px;
       margin-right: 10%;
       margin-left: 10%;
 
+      form{
+        margin-top: -1px;
+        width: 100%;
+        display: flex;
+      }
       input {
         background-color: $background;
         border: solid 2px $border;
@@ -486,6 +495,7 @@ html {
         border-bottom-right-radius: 20px;
         border-top-right-radius: 20px;
         border-left: none;
+        margin-left: -10px;
 
         &:hover {
           color: black;

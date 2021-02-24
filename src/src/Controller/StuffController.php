@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductSearchType;
 use App\Form\ProductType;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,20 +26,19 @@ class StuffController extends AbstractController
     {
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('s.name, s.id, s.state, s.color')
-            ->from('App\Entity\Product', 's')
-            ->where('s.user =:user')
-            ->setParameter('user', $this->getUser()->getId())
-;
+        $search = new Product();
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $form->handleRequest($request);
+
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(Product::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
         return $this->render('stuff/index.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 

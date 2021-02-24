@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductSearchType;
 use App\Form\ProductsValidationType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
@@ -26,19 +27,19 @@ class ProductController extends AbstractController
     {
         $breadcrumbs->addItem("Products", $this->get("router")->generate("product_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('s.name, s.id, s.state, s.color')
-            ->from('App\Entity\Product', 's');
-
+        $search = new Product();
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $form->handleRequest($request);
 
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(Product::class)->getAllAdminQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
         return $this->render('product/index.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 
