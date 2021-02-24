@@ -10,6 +10,8 @@ Every parts of the design as been made by myself. I tryed to use Bootstrap as a 
 ## Comming Evolutions
 
 - User's Interaction with damages products return (limited for the moment) 
-- Improve UI/UX design (searchbar, form design, images, Dashboard Integration)
-- Friendship administration system
+- Improve UI/UX design (searchbar on double "Maj", form design for return type and State ChoiceField, images, modal on delete)
+- Register form
+- Forget password form
+- Friendship system
 - Deposit system by product
