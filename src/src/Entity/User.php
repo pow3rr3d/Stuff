@@ -62,6 +62,11 @@ class User implements UserInterface, \Serializable
      */
     private $products;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Preference::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $preferences;
+
     public function __construct()
     {
         $this->loans = new ArrayCollection();
@@ -264,6 +269,23 @@ class User implements UserInterface, \Serializable
                   $product->setUser(null);
               }
           }
+
+          return $this;
+      }
+
+      public function getPreferences(): ?Preference
+      {
+          return $this->preferences;
+      }
+
+      public function setPreferences(Preference $preferences): self
+      {
+          // set the owning side of the relation if necessary
+          if ($preferences->getUser() !== $this) {
+              $preferences->setUser($this);
+          }
+
+          $this->preferences = $preferences;
 
           return $this;
       }
