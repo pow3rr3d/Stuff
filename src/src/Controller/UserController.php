@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Preference;
 use App\Entity\User;
 use App\Form\UserSearchType;
 use App\Form\UserType;
@@ -20,6 +21,17 @@ use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
  */
 class UserController extends AbstractController
 {
+
+    /**
+     * @Route("/darkmode", name="user_darkmode", methods={"GET"})
+     */
+    public function darkmode(EntityManagerInterface $em)
+    {
+        $mode = $em->getRepository(Preference::class)->findOneBy(["user" => "1"]);
+
+        return New Response($mode->getDarkmode());
+    }
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -158,4 +170,5 @@ class UserController extends AbstractController
         }
         return $this->redirectToRoute('user_index');
     }
+
 }

@@ -25,6 +25,7 @@ Encore
     .addEntry('cookies', './assets/cookiesModal.js')
     .addEntry('onScroll', './assets/onScroll.js')
     .addStyleEntry('styles', './assets/styles/app.scss')
+    .addEntry('darkmode', './assets/darkmode.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
