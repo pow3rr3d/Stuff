@@ -398,14 +398,22 @@ html {
         background-color: $backgroundDark;
 
         .dropdown {
-          li {
-            background-color: $backgroundDark;
-            border-bottom: none !important;
-
-            &:hover {
-              background-color: $hoverdark !important;
+          .dropdown-menu {
+            width: 250px;
+            height: 100px;
+            border: none;
+            
+  
+            li {
+              background-color: $backgroundDark;
+              border-bottom: none !important;
+  
+              &:hover {
+                background-color: $hoverdark !important;
+              }
             }
           }
+
         }
         .dropdown-menu {
           z-index: 1 !important;
@@ -686,7 +694,7 @@ html {
           width: 250px;
           height: 100px;
           border: none;
-          box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.4);
+          
 
           li {
             padding-top: 10px;
@@ -694,6 +702,8 @@ html {
             border-bottom: solid 2px $border;
             padding-left: 30px;
             transition-duration: 0.2s;
+            background-color: white;
+            box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.4);
 
             &:hover {
               border-left: solid 5px $violet2;

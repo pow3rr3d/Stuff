@@ -23,13 +23,31 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route("/darkmode", name="user_darkmode", methods={"GET"})
+     * @Route("/darkmode", name="user_darkmode", methods={"POST"})
      */
     public function darkmode(EntityManagerInterface $em)
     {
-        $mode = $em->getRepository(Preference::class)->findOneBy(["user" => $this->getUser()]);
+        $json = json_decode( file_get_contents( 'php://input' ), true );
+        dump($json);
+        $m = $em->getRepository(Preference::class)->findBy(['user' => $json['id']]);
+        if(!$m)
+        {
+            $m = new Preference;
+            $m->setUser($this->getUser());
+            $m->setDarkmode($json['darkmode']);
+            $em->persist($m);
+            $em->flush();
 
-        return New Response($mode->getDarkmode());
+        }
+        else
+        {
+        $m[0]->setDarkmode($json['darkmode']);
+        $em->persist($m[0]);
+        $em->flush();
+        }
+        $response = new Response();
+        $response->getStatusCode();
+        return $response;
     }
 
     /**
