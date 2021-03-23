@@ -13,7 +13,7 @@ else{
 btn.addEventListener("click", function () {
   if (btn.checked === true) {
 
-    xhr.open("POST", "/user/darkmode");
+    xhr.open("POST", "/preferences/darkmode");
     xhr.responseType = 'text';
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
@@ -24,7 +24,7 @@ btn.addEventListener("click", function () {
 
   }
   else {
-    xhr.open("POST", "/user/darkmode");
+    xhr.open("POST", "/preferences/darkmode");
     xhr.responseType = 'text';
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
