@@ -27,7 +27,7 @@ class UserController extends AbstractController
      */
     public function darkmode(EntityManagerInterface $em)
     {
-        $mode = $em->getRepository(Preference::class)->findOneBy(["user" => "1"]);
+        $mode = $em->getRepository(Preference::class)->findOneBy(["user" => $this->getUser()]);
 
         return New Response($mode->getDarkmode());
     }
