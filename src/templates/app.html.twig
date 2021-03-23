@@ -127,7 +127,7 @@
 
 				</div>
 
-				{% if app.user.preferences.darkmode == true %}
+				{% if app.user.preferences is not null and app.user.preferences.darkmode == true %}
 					<body class="dark">
 					{% endif %}
 					<body>
