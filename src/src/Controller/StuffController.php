@@ -11,6 +11,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 
@@ -109,14 +110,16 @@ class StuffController extends AbstractController
     /**
      * @Route("/{id}", name="stuff_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Product $product): Response
+    public function delete(Request $request, Product $product, Security $security): Response
     {
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
         }
-
+        if($security->getUser()->getRoles() === ['ROLE_ADMIN']){
+            return $this->redirectToRoute('product_index');
+        }
         return $this->redirectToRoute('stuff_index');
     }
 }
