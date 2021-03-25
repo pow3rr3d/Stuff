@@ -77,6 +77,8 @@ html {
 
   .table-show {
     max-width: 100%;
+    margin-top: 100px;
+    margin-bottom: 50px;
 
     ul {
       li {
@@ -327,6 +329,12 @@ html {
     &.dark {
       background-color: rgba(30, 30, 45, 0.8);
 
+      .table-show {
+        tr:nth-of-type(even) {
+          background-color: $backgroundDark;
+        }
+      }
+
       .navigation {
         margin-left: 70%;
         padding-top: 5%;
@@ -394,7 +402,7 @@ html {
         }
       }
 
-      .modal-content{
+      .modal-content {
         background-color: $backgroundDark;
       }
 
@@ -406,18 +414,16 @@ html {
             width: 250px;
             height: 100px;
             border: none;
-            
-  
+
             li {
               background-color: $backgroundDark;
               border-bottom: none !important;
-  
+
               &:hover {
                 background-color: $hoverdark !important;
               }
             }
           }
-
         }
         .dropdown-menu {
           z-index: 1 !important;
@@ -609,7 +615,7 @@ html {
         border-top: none;
         border-right: none;
         border-left: none;
-        border-radius: 0px;
+        border-radius: 10px;
 
         &:focus {
           box-shadow: none;
@@ -621,7 +627,7 @@ html {
         border-top: none;
         border-right: none;
         border-left: none;
-        border-radius: 0px;
+        border-radius: 10px;
 
         &:focus {
           box-shadow: none;
@@ -698,7 +704,6 @@ html {
           width: 250px;
           height: 100px;
           border: none;
-          
 
           li {
             padding-top: 10px;
