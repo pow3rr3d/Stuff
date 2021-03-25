@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Subcategory;
+use App\Form\CategorySearchType;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,19 +28,19 @@ class CategoryController extends AbstractController
     {
         $breadcrumbs->addItem("Categories", $this->get("router")->generate("category_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('s.name, s.id')
-            ->from('App\Entity\Category', 's');
-
+        $search = new Category();
+        $form = $this->createForm(CategorySearchType::class, $search);
+        $form->handleRequest($request);
 
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(Category::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
         return $this->render('category/index.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Preference;
 use App\Entity\User;
+use App\Form\UserSearchType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,6 +21,7 @@ use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
  */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -26,19 +29,20 @@ class UserController extends AbstractController
     {
         $breadcrumbs->addItem("Users", $this->get("router")->generate("user_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('u.name, u.id, u.surname, u.email, u.roles')
-            ->from('App\Entity\User', 'u');
+        $search = new User();
+        $form = $this->createForm(UserSearchType::class, $search);
+        $form->handleRequest($request);
 
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(User::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
 
         return $this->render('user/index.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 
@@ -156,4 +160,5 @@ class UserController extends AbstractController
         }
         return $this->redirectToRoute('user_index');
     }
+
 }

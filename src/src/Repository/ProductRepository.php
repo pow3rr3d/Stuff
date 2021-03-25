@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +15,43 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $user;
+
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, Product::class);
+
+        $this->user = $security->getUser();
+    }
+
+    public function getAllQuery(Product $search)
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb ->where('s.user =:user')
+            ->setParameter('user', $this->user);
+
+        if ($search->getName() !== null) {
+            $qb
+                ->andWhere($qb->expr()->like('s.name' , ':name'))
+                ->orWhere($qb->expr()->like('s.id' , ':name'))
+                ->setParameter('name', '%'.$search->getName().'%');
+        }
+
+        return $qb->getQuery();
+    }
+
+    public function getAllAdminQuery(Product $search)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        if ($search->getName() !== null) {
+            $qb
+                ->andWhere($qb->expr()->like('s.name' , ':name'))
+                ->orWhere($qb->expr()->like('s.id' , ':name'))
+                ->setParameter('name', '%'.$search->getName().'%');
+        }
+
+        return $qb->getQuery();
     }
 
     // /**

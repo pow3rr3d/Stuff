@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductSearchType;
 use App\Form\ProductType;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,6 +11,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 
@@ -25,20 +27,19 @@ class StuffController extends AbstractController
     {
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
 
-        $qb = $em->createQueryBuilder();
-        $qb->select('s.name, s.id, s.state, s.color')
-            ->from('App\Entity\Product', 's')
-            ->where('s.user =:user')
-            ->setParameter('user', $this->getUser()->getId())
-;
+        $search = new Product();
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $form->handleRequest($request);
+
         $pagination = $paginator->paginate(
-            $qb->getQuery(), /* query NOT result */
+            $this->getDoctrine()->getManager()->getRepository(Product::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
             10 /*limit per page*/
         );
 
         return $this->render('stuff/index.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 
@@ -109,14 +110,16 @@ class StuffController extends AbstractController
     /**
      * @Route("/{id}", name="stuff_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Product $product): Response
+    public function delete(Request $request, Product $product, Security $security): Response
     {
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
         }
-
+        if($security->getUser()->getRoles() === ['ROLE_ADMIN']){
+            return $this->redirectToRoute('product_index');
+        }
         return $this->redirectToRoute('stuff_index');
     }
 }

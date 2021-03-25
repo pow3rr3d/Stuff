@@ -2,6 +2,13 @@
 
 {% block title %}My Loaned Stuffs{% endblock %}
 
+{% block search %}
+    {{ form_start(form) }}
+    {{ form_widget(form.name) }}
+    <button class="btn btn-outline-secondary" type="submit" id="button-search"><i class="fas fa-search"></i></button>
+    {{ form_end(form) }}
+{% endblock %}
+
 {% block breadcrumb %} {{ wo_render_breadcrumbs({separator: '/', listId: 'breadcrumbs'}) }} {% endblock %}
 
 {% block body %}
@@ -18,8 +25,8 @@
                 <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
                 </th>
-                <th{% if pagination.isSorted('s.product') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Products', 's.product') }}
+                <th>
+                    Products
                 </th>
                 <th{% if pagination.isSorted('s.borrowedBy') %} class="sorted"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'Borrower', 's.borrowedBy') }}
@@ -66,7 +73,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records found</td>
+                    <td colspan="7">no records found</td>
                 </tr>
             {% endfor %}
             </tbody>

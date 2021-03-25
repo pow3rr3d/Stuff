@@ -19,6 +19,19 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function getAllQuery(Category $search)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        if ($search->getName() !== null) {
+            $qb
+                ->andWhere($qb->expr()->like('s.name' , ':name'))
+                ->orWhere($qb->expr()->like('s.id' , ':name'))
+                ->setParameter('name', '%'.$search->getName().'%');
+        }
+
+        return $qb->getQuery();
+    }
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

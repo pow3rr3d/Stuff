@@ -24,6 +24,10 @@ class AccountController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $encoder, User $user, Breadcrumbs $breadcrumbs): Response
     {
+        if ($this->getUser()->getId() !== $user->getId()) {
+            return $this->redirectToRoute("dashboard_index");
+        }
+
         $breadcrumbs->addItem("My Account", $this->get("router")->generate("account_index", ["id" => $user->getId()]));
 
         $form = $this->createForm(UserType::class, $user);
@@ -31,11 +35,11 @@ class AccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $user->setPassword( $form->get('password')->getData());
+            $user->setPassword($form->get('password')->getData());
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Account for '. $user->getUsername() .' edited with successful! ');
+            $this->addFlash('success', 'Account for ' . $user->getUsername() . ' edited with successful! ');
             return $this->redirectToRoute('account_index', ["id" => $user->getId()]);
         }
 
