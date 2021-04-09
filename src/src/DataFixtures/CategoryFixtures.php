@@ -15,7 +15,7 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         $batchSize = 10;
 
 
-        for($i = 1; $i < 10000; $i++)
+        for($i = 1; $i < 100000; $i++)
         {
             $category = new Category();
             $category

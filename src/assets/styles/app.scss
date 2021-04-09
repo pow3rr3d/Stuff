@@ -36,6 +36,13 @@ html {
   h1 {
     color: $violet2;
   }
+  #modalSearch{
+    .modal-content{
+      margin-top: 25%;
+      width: 200%;
+    }
+  }
+
 
   .table-index {
     max-width: 100%;
