@@ -20,6 +20,12 @@ class SearchController extends AbstractController
      */
     public function search(EntityManagerInterface $em)
     {
+        $results[] = [
+            "role" => [
+                "value" => $this->getUser()->getRoles()
+            ]
+        ];
+
         $json = json_decode(file_get_contents('php://input'), true);
 
         $qb = $em->createQueryBuilder();
@@ -76,7 +82,8 @@ class SearchController extends AbstractController
         $qb->select('c')
             ->from('App\Entity\Subcategory', 'c')
             ->where($qb->expr()->like('c.name', ':data'))
-            ->setParameter('data', '%' . $json["search"]. '%')
+            ->setParameter('data', '%' . $json["search"]. '%'
+            )
             ->orderBy('c.id', 'ASC');
 
         $categories = $qb->getQuery()->getResult();
