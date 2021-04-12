@@ -28,7 +28,7 @@ class SearchController extends AbstractController
             ->orwhere($qb->expr()->like('u.name', ':data'))
             ->orWhere($qb->expr()->like('u.surname', ':data'))
             ->orWhere($qb->expr()->like('u.email', ':data'))
-            ->setParameter('data', $json["search"])
+            ->setParameter('data', '%' . $json["search"]. '%')
             ->orderBy('u.id', 'ASC');
         if ($this->getUser()->getRoles() === ["ROLE_USER"]){
             $qb->andWhere($qb->expr()->eq('u.id', ":id"))
@@ -53,7 +53,7 @@ class SearchController extends AbstractController
             ->from('App\Entity\Product', 'p')
             ->orwhere($qb->expr()->like('p.name', ':data'))
             ->orWhere($qb->expr()->like('p.description', ':data'))
-            ->setParameter('data', $json["search"])
+            ->setParameter('data', '%' . $json["search"]. '%')
             ->orderBy('p.id', 'ASC');
         if ($this->getUser()->getRoles() === ["ROLE_USER"]){
             $qb->andWhere($qb->expr()->eq('p.user', ":id"))
@@ -76,7 +76,7 @@ class SearchController extends AbstractController
         $qb->select('c')
             ->from('App\Entity\Subcategory', 'c')
             ->where($qb->expr()->like('c.name', ':data'))
-            ->setParameter('data', $json["search"])
+            ->setParameter('data', '%' . $json["search"]. '%')
             ->orderBy('c.id', 'ASC');
 
         $categories = $qb->getQuery()->getResult();
