@@ -30,6 +30,10 @@ class SearchController extends AbstractController
             ->orWhere($qb->expr()->like('u.email', ':data'))
             ->setParameter('data', $json["search"])
             ->orderBy('u.id', 'ASC');
+        if ($this->getUser()->getRoles() === ["ROLE_USER"]){
+            $qb->andWhere($qb->expr()->eq('u.id', ":id"))
+                ->setParameter("id", $this->getUser()->getId());
+        }
 
         $users = $qb->getQuery()->getResult();
 
@@ -51,6 +55,10 @@ class SearchController extends AbstractController
             ->orWhere($qb->expr()->like('p.description', ':data'))
             ->setParameter('data', $json["search"])
             ->orderBy('p.id', 'ASC');
+        if ($this->getUser()->getRoles() === ["ROLE_USER"]){
+            $qb->andWhere($qb->expr()->eq('p.user', ":id"))
+                ->setParameter("id", $this->getUser()->getId());
+        }
 
         $products = $qb->getQuery()->getResult();
 
