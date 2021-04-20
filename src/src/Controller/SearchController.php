@@ -96,12 +96,21 @@ class SearchController extends AbstractController
                 ]
             ];
         }
+        dump($categories);
+        dump($users);
+        dump($products);
 
-        if (empty($results)){
-            $results = 'No record find for '.$json["search"].'';
+
+        if ($categories === [] && $users === [] && $products === []){
+            $results[] = [
+                "message" => [
+                    'No record find for '.$json["search"].''
+                ]
+            ];
         }
 
         $response = new Response(json_encode($results, JSON_UNESCAPED_UNICODE));
+        dump($response);
         return $response;
     }
 
