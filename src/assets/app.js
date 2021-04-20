@@ -6,12 +6,19 @@
  */
 
 import 'bootstrap';
+import $ from 'jquery';
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+//import modal search
+import {open as search} from './Search';
+
+search();
+
 
 //A2lix
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';
@@ -26,5 +33,5 @@ a2lix_lib.sfCollection.init({
 })
 
 //Console.log Style
-
 console.log('%c Stuff V0.2', 'color:green; background: #222; font-size: 24px;')
+

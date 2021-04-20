@@ -15,7 +15,7 @@ class SubcategoryFixtures extends Fixture implements OrderedFixtureInterface
     {
         $batchSize = 10;
 
-        for($i = 1; $i < 10000; $i++)
+        for($i = 1; $i < 100; $i++)
         {
             $Subcategory = new Subcategory();
             $category =  $manager->getRepository(Category::class)->findOneBy(["name" => "Category {$i}"]);

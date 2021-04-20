@@ -8,24 +8,24 @@ $hoverdark: #1a1a27;
 $border: #ebebeb;
 $a: #9e9da3;
 $smoothMorning: linear-gradient(
-  330deg,
-  #ff5f6d,
-  #ffc371
+                330deg,
+                #ff5f6d,
+                #ffc371
 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 $Quepal: linear-gradient(
-  330deg,
-  #11998e,
-  #38ef7d
+                330deg,
+                #11998e,
+                #38ef7d
 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 $comicFusion: linear-gradient(
-  150deg,
-  #ff00cc,
-  #333399
+                150deg,
+                #ff00cc,
+                #333399
 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 $Neuromancer: linear-gradient(
-  150deg,
-  #f953c6,
-  #b91d73
+                150deg,
+                #f953c6,
+                #b91d73
 ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 * {
@@ -36,6 +36,14 @@ html {
   h1 {
     color: $violet2;
   }
+
+  #modalSearch {
+    .modal-content {
+      margin-top: 25%;
+      width: 200%;
+    }
+  }
+
 
   .table-index {
     max-width: 100%;
@@ -121,6 +129,38 @@ html {
     tr:nth-of-type(even) {
       background-color: #f3f3f3;
     }
+  }
+
+  div {
+    &.hidden {
+      transition-duration: 0.5s;
+      display: none;
+
+      :only-child{
+        display: none;
+      }
+    }
+  }
+
+  #searchResult {
+    color: $a;
+    padding: 25px 10px 25px 10px;
+    a{
+      text-decoration: none;
+      color: $a;
+    }
+    ul {
+      border-bottom: solid 1px #aaaaaa;
+
+      li:last-child {
+        padding-bottom: 25px;
+      }
+    }
+  }
+
+  .hidden {
+    transition-duration: 0.5s;
+    display: none;
   }
 
   #loginDiv {
@@ -326,8 +366,13 @@ html {
         transition: all 0.3s ease;
       }
     }
+
     &.dark {
       background-color: rgba(30, 30, 45, 0.8);
+
+      #searchResult {
+        color: white;
+      }
 
       .table-show {
         tr:nth-of-type(even) {
@@ -380,6 +425,7 @@ html {
 
         #new {
           background-color: $violetTable;
+
           &:hover {
             background-color: #7a62d0;
             color: white;
@@ -388,6 +434,7 @@ html {
 
         .btn {
           background-color: $violetTable;
+
           &:hover {
             background-color: #7a62d0;
             color: white;
@@ -396,7 +443,8 @@ html {
 
         table {
           color: #9e9da3;
-          tr:hover {
+
+          tbody tr:hover {
             background-color: $hoverdark;
           }
         }
@@ -425,6 +473,7 @@ html {
             }
           }
         }
+
         .dropdown-menu {
           z-index: 1 !important;
           background-color: $backgroundDark;
@@ -438,6 +487,7 @@ html {
         #firstChild {
           border-color: $hoverdark;
           background-color: $hoverdark;
+
           &:hover {
             background-color: $hoverdark;
           }
@@ -445,6 +495,7 @@ html {
 
         li {
           border-color: $hoverdark;
+
           &:hover {
             background-color: $hoverdark;
           }
@@ -489,6 +540,7 @@ html {
             font-size: 1.5em;
             text-align: center;
             color: white;
+
             &.nb {
               margin-top: -40px;
             }
@@ -660,6 +712,7 @@ html {
           width: 100%;
           display: flex;
         }
+
         input {
           background-color: $background;
           border: solid 2px $border;
