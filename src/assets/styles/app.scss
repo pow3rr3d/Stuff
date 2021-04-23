@@ -34,6 +34,10 @@ $Neuromancer: linear-gradient(
 
 html {
 
+  .modal-dialog{
+    margin-top: 15%;
+  }
+
   .select-wrapper {
     margin: auto;
     max-width: 600px;
@@ -42,7 +46,7 @@ html {
 
   .select-pure__select {
     align-items: center;
-    background: #f9f9f8;
+    background-color: #f8f8f8 ;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -74,6 +78,8 @@ html {
     top: 50px;
     width: 100%;
     z-index: 5;
+    background-color: #f8f8f8 ;
+
   }
 
   .select-pure__select--opened .select-pure__options {
@@ -713,9 +719,6 @@ html {
       }
     }
 
-    form {
-      margin-top: 5%;
-    }
 
     #corpus {
       width: 100%;
@@ -780,22 +783,27 @@ html {
       }
 
       input {
-        border-top: none;
-        border-right: none;
-        border-left: none;
         border-radius: 10px;
+        background-color: #f8f8f8 ;
 
         &:focus {
           box-shadow: none;
           border-bottom: solid 1px $violet2;
         }
       }
+      form {
+        margin-top: 5%;
+      }
+
+      .form-group{
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
 
       select {
-        border-top: none;
-        border-right: none;
-        border-left: none;
+
         border-radius: 10px;
+        background-color: #f8f8f8 ;
 
         &:focus {
           box-shadow: none;
@@ -824,10 +832,10 @@ html {
         margin-left: 10%;
 
         form {
-          margin-top: -1px;
           width: 100%;
           display: flex;
         }
+
 
         input {
           background-color: $background;

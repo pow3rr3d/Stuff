@@ -35,7 +35,7 @@ a2lix_lib.sfCollection.init({
 })
 
 //Console.log Style
-console.log('%c Stuff V0.2', 'color:green; background: #222; font-size: 24px;')
+console.log('%c Stuff V0.3', 'color:green; background: #222; font-size: 24px;')
 
 //Select Multiple Chose.js
 var input = document.querySelector(".chosen-select")
