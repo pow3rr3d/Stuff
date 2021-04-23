@@ -70,6 +70,9 @@ class LoanType extends AbstractType
                     'choice_label' => function ($product) {
                         return $product->getName();
                     },
+                    'attr' => [
+                        'class' => 'chosen-select'
+                    ],
                     'multiple' => true,
                     'query_builder' => function (ProductRepository $productRepository) {
                         return $productRepository->createQueryBuilder('p')
