@@ -16,7 +16,7 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
 
         $batchSize = 10;
 
-        for($i = 1; $i < 100; $i++)
+        for($i = 1; $i <= 100; $i++)
         {
             $product = new Product();
             $Subcategory = $manager->getRepository(Subcategory::class)->findOneBy(["name" => "Subcategory {$i}"]);
@@ -32,9 +32,10 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
 
             if (($i % $batchSize) === 0) {
                 $manager->flush();
-                $manager->clear();
             }
         }
+        $manager->flush();
+        $manager->clear();
 
     }
 
