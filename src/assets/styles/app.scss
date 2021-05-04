@@ -34,6 +34,7 @@ $Neuromancer: linear-gradient(
 
 html {
 
+
   .modal-dialog{
     margin-top: 15%;
   }
@@ -599,11 +600,11 @@ html {
             }
           }
         }
-
         .dropdown-menu {
           z-index: 1 !important;
           background-color: $backgroundDark;
         }
+
       }
 
       #navbar {
@@ -816,6 +817,23 @@ html {
       }
     }
 
+    #modalHelpers {
+      #modal{
+        position: absolute;
+        top: -100px;
+        left: -200px;
+        width: 750px;
+        height: 500px;
+        .carousel-item{
+          color: $a;
+          padding: 50px 150px 50px 150px;
+          h2{
+            margin-bottom: 25px;
+          }
+        }
+      }
+    }
+
     #topbar {
       display: flex;
       //flex-direction: row;
@@ -828,6 +846,11 @@ html {
       padding-top: 20px;
       padding-bottom: 5px;
       margin: 0 auto;
+
+      #helpers-btn{
+        margin-left: 25px;
+        color: #9e9da3;
+      }
 
       .input-group {
         width: 60%;

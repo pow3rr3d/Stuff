@@ -18,9 +18,11 @@ import './bootstrap';
 
 //import modal search
 import {open as search} from './Search';
-
 search();
 
+//import modal helpers
+import {helpers as helpers} from './Helpers';
+helpers()
 
 //A2lix
 import a2lix_lib from '@a2lix/symfony-collection/src/a2lix_sf_collection';

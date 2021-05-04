@@ -1,0 +1,62 @@
+<div class="col-3">
+    <ul id="navbar">
+        <li id="firstChild">
+            <img src="{{ asset("build/images/logo.png")|imagine_filter("logo") }}" alt="A Test Logo">
+        </li>
+        <a href="{{ path('dashboard_index') }}">
+            <li>
+                <b>
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard</b>
+            </li>
+        </a>
+        <a href="{{ path('stuff_index') }}">
+            <li>
+                <b>
+                    <i class="fas fa-cube"></i>
+                    My Stuff</b>
+            </li>
+        </a>
+        <a href="{{ path('myloanedstuffs_index') }}">
+            <li>
+                <b>
+                    <i class="fas fa-random"></i>
+                    My Loaned Stuffs</b>
+            </li>
+        </a>
+        <a href="{{ path('myloans_index') }}">
+            <li>
+                <b>
+                    <i class="fas fa-random"></i>
+                    My Loan</b>
+            </li>
+        </a>
+
+        {% for role in app.user.roles %}
+            {% if role == "ROLE_ADMIN" %}
+                <a href="{{ path('user_index') }}">
+                    <li>
+                        <b>
+                            <i class="fas fa-users"></i>
+                            All Users</b>
+                    </li>
+                </a>
+                <a href="{{ path('product_index') }}">
+                    <li>
+                        <b>
+                            <i class="fas fa-cubes"></i>
+                            All Products</b>
+                    </li>
+                </a>
+                <a href="{{ path('category_index') }}">
+                    <li>
+                        <b>
+                            <i class="fas fa-folder-open"></i>
+                            All Categories</b>
+                    </li>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+</div>
