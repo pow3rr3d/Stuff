@@ -18,46 +18,36 @@
         <a id="new" href="{{ path('stuff_new') }}">Create new</a>
 
 
-        <table class="table table-index">
-            <thead>
-            <tr>
-                {# sorting of properties based on query components #}
-                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
-                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
-                </th>
-                <th{% if pagination.isSorted('s.state') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'State', 's.state') }}
-                </th>
-                <th{% if pagination.isSorted('s.color') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Color', 's.color') }}
-                </th>
-                <th>actions</th>
-            </tr>
-            </thead>
-
-            {# table body #}
-            <tbody>
+        <div class="row card-group">
             {% for stuff in pagination %}
-                <tr {% if loop.index is odd %}class="color"{% endif %}>
-                    <td>{{ stuff.id }}</td>
-                    <td>{{ stuff.name }}</td>
-                    <td>{{ stuff.state }}</td>
-                    <td>{{ stuff.color }}</td>
-                    <td>
-                        <a class="showLink" href="{{ path('stuff_show', {'id': stuff.id }) }}" title="Show"><i
-                                    class="far fa-eye"></i></a>
-                        <a href="{{ path('stuff_edit', {'id': stuff.id}) }}" title="Edit"><i
-                                    class="far fa-edit"></i></a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="5">no records found</td>
-                </tr>
+                <div class="col-sm-4">
+                    <div class="card card-flip">
+                        <div class="card-front">
+                            <img class="card-img-top" src="https://live.staticflickr.com/2463/3598596311_84211f2566_b.jpg" alt="Products Images {{ stuff.id }}">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ stuff.name|u.truncate(18, '...') }}</h3><h6>(id
+                                    n°{{ stuff.id|u.truncate(10, '...') }})</h6>
+                                <hr>
+                                <p class="card-text">{{ stuff.description|u.truncate(75, '...', false) }}</p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <div class="card-body d-flex flex-column justify-content-center align-middle">
+                                <h3 class="card-title">{{ stuff.name|u.truncate(18, '...') }}</h3><h6>(id
+                                    n°{{ stuff.id|u.truncate(10, '...') }})</h6>
+                                <hr>
+                                <p class="card-text">{{ stuff.description|u.truncate(75, '...', false) }}</p>
+                                <hr>
+                                <a class="btn " href="{{ path('stuff_edit', {'id': stuff.id}) }}"
+                                   title="Edit">Edit</a>
+                                <a class="btn " href="{{ path('stuff_show', {'id': stuff.id }) }}"
+                                   title="Show">show</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
 
         {# display navigation #}
         <div class="navigation">
