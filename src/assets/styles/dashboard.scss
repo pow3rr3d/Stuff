@@ -1,0 +1,93 @@
+#groupTile {
+  display: flex;
+
+  #tileLinks {
+    margin-top: 15%;
+    margin-bottom: -12%;
+    margin-left: 4.5%;
+    margin-right: 1%;
+    text-decoration: none;
+
+    #tile {
+      min-width: 275px;
+      height: 150px;
+      background: $smoothMorning;
+      border-radius: 1px;
+      box-shadow: -1px 2px 4px -1px rgba(0, 0, 0, 0.4);
+
+      &1 {
+        @extend #tile;
+        background: $Quepal;
+      }
+
+      &2 {
+        @extend #tile;
+        background: $comicFusion;
+      }
+
+      &3 {
+        @extend #tile;
+        background: $Neuromancer;
+      }
+
+      p {
+        padding-top: 30px;
+        font-size: 1.5em;
+        text-align: center;
+        color: white;
+
+        &.nb {
+          margin-top: -40px;
+        }
+      }
+    }
+  }
+}
+
+#groupPicto {
+  display: flex;
+
+  #picto {
+    //display: inline-block;
+    //margin: 0 auto;
+    width: 40px !important;
+    //height: 40px;
+    background: $smoothMorning;
+    //border-radius: 15px;
+    //transform: rotate(45deg);
+    margin-right: 10px;
+    margin-left: 30px;
+    min-width: 40px;
+    text-align: center;
+
+    &1 {
+      @extend #picto;
+      background: $Quepal;
+    }
+
+    &2 {
+      @extend #picto;
+      background: $comicFusion;
+    }
+
+    &3 {
+      @extend #picto;
+      background: $Neuromancer;
+    }
+
+    p {
+      //transform: rotate(-45deg);
+      color: white;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 5px;
+      //padding-left: 5px;
+      //padding-top: 5px;
+      font-size: 20px;
+    }
+  }
+
+  .text {
+    text-align: justify;
+  }
+}

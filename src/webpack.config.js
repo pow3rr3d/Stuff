@@ -20,12 +20,16 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
+
+    //Javascript
     .addEntry('app', './assets/app.js')
     .addEntry('login', './assets/login.js')
     .addEntry('cookies', './assets/cookiesModal.js')
     .addEntry('onScroll', './assets/onScroll.js')
-    .addStyleEntry('styles', './assets/styles/app.scss')
     .addEntry('darkmode', './assets/darkmode.js')
+
+    //SCSS
+    .addStyleEntry('styles', './assets/styles/app.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

@@ -1,0 +1,33 @@
+body {
+  #modalSearch {
+    .modal-content {
+      margin-top: 25%;
+      width: 200%;
+    }
+  }
+
+  #searchResult {
+    color: $a;
+    padding: 25px 10px 25px 10px;
+
+    a {
+      text-decoration: none;
+      color: $a;
+    }
+
+    ul {
+      border-bottom: solid 1px #aaaaaa;
+
+      li:last-child {
+        padding-bottom: 25px;
+      }
+    }
+  }
+
+  &.dark {
+    #searchResult {
+      color: white;
+    }
+  }
+}
+
