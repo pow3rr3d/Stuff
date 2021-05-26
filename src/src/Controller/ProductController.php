@@ -8,7 +8,9 @@ use App\Form\ProductsValidationType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Exception;
 use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -121,6 +123,6 @@ class ProductController extends AbstractController
         if($security->getUser()->getRoles() === ['ROLE_ADMIN']){
             return $this->redirectToRoute('product_index');
         }
-        return $this->redirectToRoute('stuff_index');
+        return $this->redirectToRoute('product_index');
     }
 }
