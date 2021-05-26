@@ -78,6 +78,10 @@ html {
         background-color: $backgroundDark;
       }
 
+      #logo{
+        filter: invert(50%);
+      }
+
     }
   }
 }
