@@ -138,7 +138,7 @@ class StuffController extends AbstractController
             $entityManager->flush();
         }
         if($security->getUser()->getRoles() === ['ROLE_ADMIN']){
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('stuff_index');
         }
         return $this->redirectToRoute('stuff_index');
     }

@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn cancel-btn btn-default" data-dismiss="modal">Cancel</button>
-                <form method="post" action="{{ path("stuff_delete", {id: product.id}) }}"
+                <form method="post" action="{{ path("product_delete", {id: product.id}) }}"
                       style="display: inline-block">
                     <input type="hidden" name="_method" value="delete">
                     <input type="hidden" name="_token" data-toggle="modal"
