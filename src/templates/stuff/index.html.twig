@@ -17,6 +17,20 @@
 
         <a id="new" href="{{ path('stuff_new') }}">Create new</a>
 
+        <div class="btn-group d-flex justify-content-start">
+            <a  class="sort-btn" href='?page={{ pagination.getPaginationData.current }}'>
+                X
+            </a>
+            <a href='?sort=s.description&direction=asc&page={{ pagination.getPaginationData.current }}'>
+                {{ knp_pagination_sortable(pagination, 'Id', 's.id') }}
+            </a>
+            <a href='?sort=s.description&direction=asc&page={{ pagination.getPaginationData.current }}'>
+                {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
+            </a>
+            <a href='?sort=s.description&direction=asc&page={{ pagination.getPaginationData.current }}'>
+                {{ knp_pagination_sortable(pagination, 'Image', 's.imageName') }}
+            </a>
+        </div>
 
         <div class="row card-group">
             {% for stuff in pagination %}
@@ -24,9 +38,12 @@
                     <div class="card card-flip">
                         <div class="card-front">
                             {% if stuff.imageName %}
-                            <img class="card-img-top" src="{{ vich_uploader_asset(stuff, 'imageFile') }}" alt="Products Images {{ stuff.id }}">
+                                <img class="card-img-top" src="{{ vich_uploader_asset(stuff, 'imageFile') }}"
+                                     alt="Products Images {{ stuff.id }}">
                             {% else %}
-                            <img class="card-img-top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" alt="Products Images {{ stuff.id }}">
+                                <img class="card-img-top"
+                                     src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+                                     alt="Products Images {{ stuff.id }}">
                             {% endif %}
 
 

@@ -1,4 +1,61 @@
 body {
+  .sortable, .sort-btn {
+    border: solid 1px $violet2;
+    border-radius: 5px;
+    background-color: white;
+    color: $violet2;
+    //position: absolute;
+    //right: 20%;
+    padding: 10px;
+    transition-duration: 0.5s;
+    margin-right: 25px;
+    margin-top: 75px;
+    margin-bottom: -50px;
+    width: 100px;
+    text-align: center;
+
+    &:hover {
+      background-color: white;
+      transition-duration: 0.5s;
+    }
+  }
+
+  .sort-btn {
+    border: solid 1px $violet2;
+    border-radius: 5px;
+    background-color: white;
+    color: $violet2;
+    //position: absolute;
+    //right: 20%;
+    padding: 10px;
+    transition-duration: 0.5s;
+    margin-right: 25px;
+    margin-top: 75px;
+    margin-bottom: -50px;
+    width: 46px;
+    text-align: center;
+
+    &:hover {
+      background-color: white;
+      transition-duration: 0.5s;
+    }
+  }
+
+  .asc, .desc {
+    border: solid 1px $violet2;
+    border-radius: 5px;
+    background-color: $violetTable;
+    color: $violet2;
+    //position: absolute;
+    //right: 20%;
+    padding: 10px;
+    margin-right: 25px;
+    transition-duration: 0.5s;
+    width: 100px;
+    margin-top: 75px;
+    margin-bottom: -50px;
+    text-align: center;
+  }
 
   .role-btn {
     margin-top: -4px !important;
@@ -47,7 +104,8 @@ body {
         transition-duration: 0.5s;
       }
     }
-    .cancel-btn{
+
+    .cancel-btn {
       margin-top: 43px !important;
     }
 
@@ -80,6 +138,21 @@ body {
 
 
     #corpus {
+
+      .sortable, .sort-btn {
+        background-color: $violetTable;
+
+        &:hover {
+          background-color: #7a62d0;
+          color: white;
+        }
+      }
+
+    .asc, .desc{
+      background-color: #7a62d0;
+      color: white;
+    }
+
       #new {
         background-color: $violetTable;
 
@@ -88,6 +161,7 @@ body {
           color: white;
         }
       }
+
       .btn {
         background-color: $violetTable;
 
