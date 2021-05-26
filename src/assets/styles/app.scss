@@ -56,6 +56,13 @@ html {
     margin-top: 15%;
   }
 
+  #logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
   .hidden {
     transition-duration: 0.5s;
     display: none;

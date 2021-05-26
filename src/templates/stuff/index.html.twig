@@ -23,7 +23,13 @@
                 <div class="col-sm-4">
                     <div class="card card-flip">
                         <div class="card-front">
-                            <img class="card-img-top" src="https://live.staticflickr.com/2463/3598596311_84211f2566_b.jpg" alt="Products Images {{ stuff.id }}">
+                            {% if stuff.imageName %}
+                            <img class="card-img-top" src="{{ vich_uploader_asset(stuff, 'imageFile') }}" alt="Products Images {{ stuff.id }}">
+                            {% else %}
+                            <img class="card-img-top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" alt="Products Images {{ stuff.id }}">
+                            {% endif %}
+
+
                             <div class="card-body">
                                 <h3 class="card-title">{{ stuff.name|u.truncate(18, '...') }}</h3><h6>(id
                                     n°{{ stuff.id|u.truncate(10, '...') }})</h6>

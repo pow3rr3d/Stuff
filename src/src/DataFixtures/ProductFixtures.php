@@ -26,6 +26,7 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
                 ->setName("Product {$i}")
                 ->setUser($user['0'])
                 ->setDescription("Ceci est la description du produit {$i}. Il s'agit d'un super produit.")
+                ->setUpdatedAt(new \DateTime())
                 ->setSubcategory($Subcategory);
 
             $manager->persist($product);
