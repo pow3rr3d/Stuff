@@ -28,14 +28,14 @@
                 <th>
                     Products
                 </th>
-                <th{% if pagination.isSorted('s.borrowedBy') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Borrower', 's.borrowedBy') }}
+                <th>
+                    Borrower
                 </th>
                 <th{% if pagination.isSorted('s.loanedAt') %} class="sorted"{% endif %}>
                     {{ knp_pagination_sortable(pagination, 'Loaned At', 's.loanedAt') }}
                 </th>
                 <th{% if pagination.isSorted('s.state') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'State', 's.state') }}
+                    {{ knp_pagination_sortable(pagination, 'State', 's.returnAt') }}
                 </th>
                 <th>actions</th>
             </tr>

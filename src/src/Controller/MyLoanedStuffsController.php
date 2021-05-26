@@ -40,6 +40,7 @@ class MyLoanedStuffsController extends AbstractController
             10 /*limit per page*/
         );
 
+
         return $this->render('myLoanedStuffs/index.html.twig', [
             'pagination' => $pagination,
             'form' => $form->createView()
