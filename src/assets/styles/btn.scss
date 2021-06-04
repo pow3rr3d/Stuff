@@ -1,60 +1,63 @@
 body {
-  .sortable, .sort-btn {
-    border: solid 1px $violet2;
-    border-radius: 5px;
-    background-color: white;
-    color: $violet2;
-    //position: absolute;
-    //right: 20%;
-    padding: 10px;
-    transition-duration: 0.5s;
-    margin-right: 25px;
-    margin-top: 75px;
-    margin-bottom: -50px;
-    width: 100px;
-    text-align: center;
-
-    &:hover {
+  .btn-group {
+    top: 50px;
+    .sortable, .sort-btn {
+      border: solid 1px $violet2;
+      border-radius: 5px;
       background-color: white;
+      color: $violet2;
+      //position: absolute;
+      //right: 20%;
+      padding: 10px;
       transition-duration: 0.5s;
+      margin-right: 25px;
+      //margin-top: 75px;
+      //margin-bottom: -50px;
+      width: 100px;
+      text-align: center;
+
+      &:hover {
+        background-color: white;
+        transition-duration: 0.5s;
+      }
     }
-  }
 
-  .sort-btn {
-    border: solid 1px $violet2;
-    border-radius: 5px;
-    background-color: white;
-    color: $violet2;
-    //position: absolute;
-    //right: 20%;
-    padding: 10px;
-    transition-duration: 0.5s;
-    margin-right: 25px;
-    margin-top: 75px;
-    margin-bottom: -50px;
-    width: 46px;
-    text-align: center;
-
-    &:hover {
+    .sort-btn {
+      border: solid 1px $violet2;
+      border-radius: 5px;
       background-color: white;
+      color: $violet2;
+      //position: absolute;
+      //right: 20%;
+      padding: 10px;
       transition-duration: 0.5s;
-    }
-  }
+      margin-right: 25px;
+      //margin-top: 75px;
+      //margin-bottom: -50px;
+      width: 46px;
+      text-align: center;
 
-  .asc, .desc {
-    border: solid 1px $violet2;
-    border-radius: 5px;
-    background-color: $violetTable;
-    color: $violet2;
-    //position: absolute;
-    //right: 20%;
-    padding: 10px;
-    margin-right: 25px;
-    transition-duration: 0.5s;
-    width: 100px;
-    margin-top: 75px;
-    margin-bottom: -50px;
-    text-align: center;
+      &:hover {
+        background-color: white;
+        transition-duration: 0.5s;
+      }
+    }
+
+    .asc, .desc {
+      border: solid 1px $violet2;
+      border-radius: 5px;
+      background-color: $violetTable;
+      color: $violet2;
+      //position: absolute;
+      //right: 20%;
+      padding: 10px;
+      margin-right: 25px;
+      transition-duration: 0.5s;
+      width: 100px;
+      //margin-top: 75px;
+      //margin-bottom: -50px;
+      text-align: center;
+    }
   }
 
   .role-btn {
@@ -148,10 +151,10 @@ body {
         }
       }
 
-    .asc, .desc{
-      background-color: #7a62d0;
-      color: white;
-    }
+      .asc, .desc {
+        background-color: #7a62d0;
+        color: white;
+      }
 
       #new {
         background-color: $violetTable;

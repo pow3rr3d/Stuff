@@ -96,10 +96,6 @@ class SearchController extends AbstractController
                 ]
             ];
         }
-        dump($categories);
-        dump($users);
-        dump($products);
-
 
         if ($categories === [] && $users === [] && $products === []){
             $results[] = [
@@ -110,7 +106,7 @@ class SearchController extends AbstractController
         }
 
         $response = new Response(json_encode($results, JSON_UNESCAPED_UNICODE));
-        dump($response);
+
         return $response;
     }
 
