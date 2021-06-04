@@ -143,7 +143,7 @@ class UserController extends AbstractController
             $user->setRoles("ROLE_ADMIN");
             $em->flush();
         }
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('user_show', ["id" => $user->getId()]);
     }
 
     /**
@@ -158,7 +158,7 @@ class UserController extends AbstractController
             $user->setRoles("ROLE_USER");
             $em->flush();
         }
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('user_show', ["id" => $user->getId()]);
     }
 
 }

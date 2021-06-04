@@ -1,0 +1,10 @@
+div {
+  &.hidden {
+    transition-duration: 0.5s;
+    display: none;
+
+    :only-child {
+      display: none;
+    }
+  }
+}

@@ -15,63 +15,65 @@
     <div id="corpus" class="col-9">
         <h1>My Loan index ({{ pagination.getTotalItemCount }})</h1>
 
-        <table class="table table-index">
-            <thead>
-            <tr>
-                {# sorting of properties based on query components #}
-                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
-                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
-                </th>
-                <th>
-                    Products
-                </th>
-                <th{% if pagination.isSorted('s.loanedBy.name') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Loaner', 's.loanedBy.name') }}
-                </th>
-                <th{% if pagination.isSorted('s.loanedAt') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Loaned At', 's.loanedAt') }}
-                </th>
-                <th{% if pagination.isSorted('s.state') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'State', 's.state') }}
-                </th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for loan in pagination %}
+        <div class="table-responsive">
+            <table class="table table-index">
+                <thead>
                 <tr>
-                    <td>{{ loan.id }}</td>
-                    <td>{{ loan.name }}</td>
-{#                    <td>{{ loan.description }}</td>#}
-                    <td>
-                        {% if loan.returnAt == null %}
-                            {{ loan.product|length }}
-                        {% else %}
-                            {{ loan.loanArchive.product|length }}
-                        {% endif %}
-                    </td>
-                    <td>{{ loan.loanedBy.username }}</td>
-                    <td>{{ loan.loanedAt|date("d/m/Y") }}</td>
-                    <td>
-                        {% if loan.returnAt == null %}
-                            In progress
-                        {% else %}
-                            Returned
-                        {% endif %}
-                    </td>
-                    <td>
-                        <a class="showLink" href="{{ path('myloans_show', {'id': loan.id}) }}" title="Show"><i class="far fa-eye"></i></a>
-                    </td>
+                    {# sorting of properties based on query components #}
+                    <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
+                    <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
+                        {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
+                    </th>
+                    <th>
+                        Products
+                    </th>
+                    <th>
+                        Loaner
+                    </th>
+                    <th{% if pagination.isSorted('s.loanedAt') %} class="sorted"{% endif %}>
+                        {{ knp_pagination_sortable(pagination, 'Loaned At', 's.loanedAt') }}
+                    </th>
+                    <th{% if pagination.isSorted('s.state') %} class="sorted"{% endif %}>
+                        {{ knp_pagination_sortable(pagination, 'State', 's.returnAt') }}
+                    </th>
+                    <th>actions</th>
                 </tr>
-            {% else %}
-                <tr>
-                    <td colspan="7">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                {% for loan in pagination %}
+                    <tr>
+                        <td>{{ loan.id }}</td>
+                        <td>{{ loan.name }}</td>
+                        {# <td>{{ loan.description }}</td> #}
+                        <td>
+                            {% if loan.returnAt == null %}
+                                {{ loan.product|length }}
+                            {% else %}
+                                {{ loan.loanArchive.product|length }}
+                            {% endif %}
+                        </td>
+                        <td>{{ loan.loanedBy.username }}</td>
+                        <td>{{ loan.loanedAt|date("d/m/Y") }}</td>
+                        <td>
+                            {% if loan.returnAt == null %}
+                                In progress
+                            {% else %}
+                                Returned
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="showLink" href="{{ path('myloans_show', {'id': loan.id}) }}" title="Show"><i
+                                        class="far fa-eye"></i></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
         {# display navigation #}
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}

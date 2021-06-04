@@ -34,7 +34,7 @@ class StuffController extends AbstractController
         $pagination = $paginator->paginate(
             $this->getDoctrine()->getManager()->getRepository(Product::class)->getAllQuery($search),
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            12 /*limit per page*/
         );
 
         return $this->render('stuff/index.html.twig', [
@@ -76,6 +76,12 @@ class StuffController extends AbstractController
      */
     public function show(Product $product, Breadcrumbs $breadcrumbs): Response
     {
+        if ($this->getUser() !== $product->getUser())
+        {
+            $response = new Response();
+            $response->setStatusCode(403);
+            return $response;
+        }
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
         $breadcrumbs->addItem("Show", $this->get("router")->generate("stuff_show", ["id" => $product->getId()]));
 
@@ -89,6 +95,13 @@ class StuffController extends AbstractController
      */
     public function edit(Request $request, Product $product, Breadcrumbs $breadcrumbs): Response
     {
+        if ($this->getUser() !== $product->getUser())
+        {
+            $response = new Response();
+            $response->setStatusCode(403);
+            return $response;
+        }
+
         $breadcrumbs->addItem("Stuff", $this->get("router")->generate("stuff_index"));
         $breadcrumbs->addItem("Edit", $this->get("router")->generate("stuff_edit", ["id" => $product->getId()]));
 
@@ -112,13 +125,20 @@ class StuffController extends AbstractController
      */
     public function delete(Request $request, Product $product, Security $security): Response
     {
+        if ($this->getUser() !== $product->getUser())
+        {
+            $response = new Response();
+            $response->setStatusCode(403);
+            return $response;
+        }
+
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
         }
         if($security->getUser()->getRoles() === ['ROLE_ADMIN']){
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('stuff_index');
         }
         return $this->redirectToRoute('stuff_index');
     }

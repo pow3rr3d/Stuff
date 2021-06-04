@@ -1,0 +1,18 @@
+#modalHelpers {
+  #modal {
+    position: absolute;
+    top: -100px;
+    left: -200px;
+    width: 750px;
+    height: 500px;
+
+    .carousel-item {
+      color: $a;
+      padding: 50px 150px 50px 150px;
+
+      h2 {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}

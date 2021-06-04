@@ -1,0 +1,24 @@
+#ariane {
+  top: 66px;
+  position: fixed;
+  width: 100%;
+  background-color: $violet;
+  padding-left: 20%;
+  z-index: 1;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  color: $mauve;
+  opacity: 0.9;
+  display: flex;
+
+  #breadcrumbs {
+    margin: 0 auto;
+    margin-left: 70%;
+
+    a {
+      text-decoration: none;
+      color: $mauve;
+      font-weight: bold;
+    }
+  }
+}

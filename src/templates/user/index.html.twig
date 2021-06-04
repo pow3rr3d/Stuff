@@ -27,18 +27,18 @@
             <thead>
             <tr>
                 {# sorting of properties based on query components #}
-                <th>{{ knp_pagination_sortable(pagination, 'Id', 'u.id') }}</th>
-                <th{% if pagination.isSorted('u.name') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Name', 'u.name') }}
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 's.id') }}</th>
+                <th{% if pagination.isSorted('s.name') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}
                 </th>
-                <th{% if pagination.isSorted('u.surname') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Surname', 'u.surname') }}
+                <th{% if pagination.isSorted('s.surname') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Surname', 's.surname') }}
                 </th>
-                <th{% if pagination.isSorted('u.email') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Email', 'u.email') }}
+                <th{% if pagination.isSorted('s.email') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Email', 's.email') }}
                 </th>
-                <th{% if pagination.isSorted('u.roles') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Roles', 'u.roles') }}
+                <th{% if pagination.isSorted('s.roles') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Roles', 's.roles') }}
                 </th>
                 <th>actions</th>
             </tr>

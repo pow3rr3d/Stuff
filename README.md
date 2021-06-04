@@ -10,7 +10,7 @@ Every parts of the design as been made by myself. I tryed to use Bootstrap as a 
 ## Comming Evolutions
 
 - User's Interaction with damages products return (limited for the moment) 
-- Improve UI/UX design (Add helpers, form design for return type and State ChoiceField, images)
+- Improve UI/UX design (form design for return type and State ChoiceField)
 - Register form
 - Forget password form
 - Friendship system

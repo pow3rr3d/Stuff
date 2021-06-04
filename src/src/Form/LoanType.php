@@ -70,24 +70,33 @@ class LoanType extends AbstractType
                     'choice_label' => function ($product) {
                         return $product->getName();
                     },
+                    'attr' => [
+                        'class' => 'chosen-select'
+                    ],
                     'multiple' => true,
                     'query_builder' => function (ProductRepository $productRepository) {
                         return $productRepository->createQueryBuilder('p')
                             ->andWhere('p.loan IS NULL OR p.loan = :loan')
-                            ->setParameter('loan', $this->loan);
+                            ->andWhere('p.user = :user')
+                            ->setParameter('loan', $this->loan)
+                            ->setParameter('user', $this->user);
                     },
                 ]);
-            }
-            else{
+            } else {
                 $event->getForm()->add('product', EntityType::class, [
                     "class" => Product::class,
                     'choice_label' => function ($product) {
                         return $product->getName();
                     },
+                    'attr' => [
+                        'class' => 'chosen-select'
+                    ],
                     'multiple' => true,
                     'query_builder' => function (ProductRepository $productRepository) {
                         return $productRepository->createQueryBuilder('p')
-                            ->andWhere('p.loan IS NULL');
+                            ->andWhere('p.loan IS NULL')
+                            ->andWhere('p.user = :user')
+                            ->setParameter('user', $this->user);
                     },
                 ]);
             }

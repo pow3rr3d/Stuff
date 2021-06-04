@@ -56,6 +56,10 @@
                 </li>
             </a>
         </ul>
+
+        {# <a href="#" class=""> #}
+        <i id="helpers-btn" class="far fa-question-circle"></i>
+        {# </a> #}
     </div>
 
 </div>
@@ -69,73 +73,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
-            <ul id="navbar">
-                <li id="firstChild">
-                    <img src="{{ asset("build/images/logo.png")|imagine_filter("logo") }}" alt="A Test Logo">
-                </li>
-                <a href="{{ path('dashboard_index') }}">
-                    <li>
-                        <b>
-                            <i class="fas fa-tachometer-alt"></i>
-                            Dashboard</b>
-                    </li>
-                </a>
-                <a href="{{ path('stuff_index') }}">
-                    <li>
-                        <b>
-                            <i class="fas fa-cube"></i>
-                            My Stuff</b>
-                    </li>
-                </a>
-                <a href="{{ path('myloanedstuffs_index') }}">
-                    <li>
-                        <b>
-                            <i class="fas fa-random"></i>
-                            My Loaned Stuffs</b>
-                    </li>
-                </a>
-                <a href="{{ path('myloans_index') }}">
-                    <li>
-                        <b>
-                            <i class="fas fa-random"></i>
-                            My Loan</b>
-                    </li>
-                </a>
 
-                {% for role in app.user.roles %}
-                    {% if role == "ROLE_ADMIN" %}
-                        <a href="{{ path('user_index') }}">
-                            <li>
-                                <b>
-                                    <i class="fas fa-users"></i>
-                                    All Users</b>
-                            </li>
-                        </a>
-                        <a href="{{ path('product_index') }}">
-                            <li>
-                                <b>
-                                    <i class="fas fa-cubes"></i>
-                                    All Products</b>
-                            </li>
-                        </a>
-                        <a href="{{ path('category_index') }}">
-                            <li>
-                                <b>
-                                    <i class="fas fa-folder-open"></i>
-                                    All Categories</b>
-                            </li>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-
-        </div>
+        {% include '_menu.html.twig' %}
 
         {% if app.user.preferences is not null and app.user.preferences.darkmode == true %}
         <body class="dark">
-        {% endif %}
+        {% else %}
         <body>
+        {% endif %}
+
 
         <div class="hidden" id="return-to-top">
             <i class="fas fa-chevron-up"></i>
@@ -143,28 +89,9 @@
 
         {% block body %}{% endblock %}
 
-        <div id="modalSearch" class="modal fade bd-dark" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div id='modal' class="modal-content">
-                    <input type="text" id="searchInput" class ="form-control search" placeholder="Searching for...">
-                    <div id="searchResult" class="hidden">
-                        <h3 id="userTitle" class="hidden">User</h3>
-                        <ul id="user">
 
-                        </ul>
-                        <h3 id="productTitle" class="hidden">Product</h3>
-                        <ul id="product">
-
-                        </ul>
-                        <h3 id="categoryTitle" class="hidden">Category</h3>
-                        <ul id="category">
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include '_modal_search.html.twig' %}
+        {% include '_modal_helper.html.twig' %}
 
         {% block javascripts %}
             <!-- JavaScript Bundle with Popper -->
@@ -189,4 +116,4 @@
     </div>
 </div>
 </html>
-</html>
+

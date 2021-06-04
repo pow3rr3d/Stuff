@@ -16,7 +16,7 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
 
         $batchSize = 10;
 
-        for($i = 1; $i < 100; $i++)
+        for($i = 1; $i <= 100; $i++)
         {
             $product = new Product();
             $Subcategory = $manager->getRepository(Subcategory::class)->findOneBy(["name" => "Subcategory {$i}"]);
@@ -26,15 +26,17 @@ class ProductFixtures extends Fixture implements OrderedFixtureInterface
                 ->setName("Product {$i}")
                 ->setUser($user['0'])
                 ->setDescription("Ceci est la description du produit {$i}. Il s'agit d'un super produit.")
+                ->setUpdatedAt(new \DateTime())
                 ->setSubcategory($Subcategory);
 
             $manager->persist($product);
 
             if (($i % $batchSize) === 0) {
                 $manager->flush();
-                $manager->clear();
             }
         }
+        $manager->flush();
+        $manager->clear();
 
     }
 
