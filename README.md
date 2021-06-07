@@ -1,4 +1,4 @@
-# Stuff V0.3
+# Stuff V0.4
 
   
  
@@ -9,8 +9,7 @@ Every parts of the design as been made by myself. I tryed to use Bootstrap as a 
 
 ## Comming Evolutions
 
-- User's Interaction with damages products return (limited for the moment) 
-- Improve UI/UX design (form design for return type and State ChoiceField)
+- Improve UI/UX design (form design for return type and State ChoiceField, bug fixe stuff card, change the way to select user in loan, update category field in stuff)
 - Register form
 - Forget password form
 - Friendship system
