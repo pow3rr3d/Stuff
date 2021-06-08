@@ -10,7 +10,10 @@
 
         <a id="new" href="{{ path('myloanedstuffs_index') }}">back to list</a>
 
-        {{ include('myLoans/_form.html.twig', {'button_label': 'Update'}) }}
+        <h2>Please verify the state of your stuffs</h2>
 
+        <div class="accordion-group">
+            {{ include('myLoans/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
     </div>
 {% endblock %}

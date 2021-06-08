@@ -27,7 +27,7 @@ class ReturnLoanType extends AbstractType
     {
             $builder
                 ->add("product", CollectionType::class, [
-                    "entry_type" => ReturnProductType::class,
+                    "entry_type" => ReturnProductType::class
                 ]);
 
 //            ->add('name')
