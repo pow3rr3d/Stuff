@@ -1,16 +1,14 @@
-# Stuff V0.3
+# Stuff V0.5
 
   
  
 This project is a self-training project. 
 
-Every parts of the design as been made by myself. I tryed to use Bootstrap as a minimum (Grid, dropdown...).  
+Every part of the design as been made by myself. I tried to use Bootstrap as a minimum (Grid, dropdown...).  
 
 
-## Comming Evolutions
+## Coming Evolutions
 
-- User's Interaction with damages products return (limited for the moment) 
-- Improve UI/UX design (form design for return type and State ChoiceField)
 - Register form
 - Forget password form
 - Friendship system

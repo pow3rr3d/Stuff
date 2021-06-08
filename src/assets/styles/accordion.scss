@@ -1,0 +1,61 @@
+body {
+  .accordion-button {
+    background-color: $violetTable !important;
+    border-radius: 0px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: $violet2;
+    }
+
+    &.collapsed {
+      background-color: $violetTable;
+    }
+
+    .form-control {
+      background: none;
+      border: none;
+      width: 25%;
+      color: $violet2;
+    }
+
+    &:not(.collapsed)::after {
+      background-image: none;
+      color: $violet2;
+      font-weight: 900;
+      font-family: 'Font Awesome\ 5 Free';
+      content: "\f078";
+      float: right;
+    }
+
+    &::after {
+      font-weight: 900;
+      font-family: 'Font Awesome\ 5 Free';
+      color: $violet2;
+      background-image: none;
+      content: "\f078";
+    }
+
+  }
+
+
+  .accordion-body {
+    .form-control:disabled {
+      background: none;
+      border: none;
+    }
+  }
+
+  &.dark{
+    .accordion-body {
+      .form-control{
+        background-color: $a;
+        border: none;
+      }
+      .form-control:disabled {
+        background: none;
+        color: $a;
+      }
+    }
+  }
+}

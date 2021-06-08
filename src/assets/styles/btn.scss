@@ -1,5 +1,5 @@
 body {
-  .btn-group {
+  .filter {
     top: 50px;
     .sortable, .sort-btn {
       border: solid 1px $violet2;
@@ -12,7 +12,7 @@ body {
       transition-duration: 0.5s;
       margin-right: 25px;
       //margin-top: 75px;
-      //margin-bottom: -50px;
+      //margin-bottom: 50px;
       width: 100px;
       text-align: center;
 

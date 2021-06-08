@@ -62,6 +62,7 @@ class StuffController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
 
+
             return $this->redirectToRoute('stuff_index');
         }
 
