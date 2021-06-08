@@ -36,6 +36,8 @@ class LoanType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('name')
             ->add('description')
@@ -52,6 +54,9 @@ class LoanType extends AbstractType
                         ->where('u.id != :id')
                         ->setParameter('id', $this->user->getId());
                 },
+                'attr' => [
+                    'class' => 'chosen-select-user',
+                ],
             ]);
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {

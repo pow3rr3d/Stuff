@@ -18,10 +18,12 @@ import './bootstrap';
 
 //import modal search
 import {open as search} from './Search';
+
 search();
 
 //import modal helpers
 import {helpers as helpers} from './Helpers';
+
 helpers()
 
 //A2lix
@@ -37,9 +39,9 @@ a2lix_lib.sfCollection.init({
 })
 
 //Console.log Style
-console.log('%c Stuff V0.4', 'color:green; background: #222; font-size: 24px;')
+console.log('%c Stuff V0.5', 'color:green; background: #222; font-size: 24px;')
 
-//Select Multiple Chose.js
+//Select Multiple Chose.js for products
 var input = document.querySelector(".chosen-select")
 if (input !== null) {
     input.classList.add("hidden")
@@ -71,7 +73,6 @@ if (input !== null) {
     div.name = input.name
     input.parentNode.appendChild(div)
 
-//
     var instance = new SelectPure(".new-select", {
         placeholder: false,
         options: choices,
@@ -101,6 +102,70 @@ if (input !== null) {
             el.forEach(function (data) {
                 options.find(c => c.value == data).selected = true
             })
+        }
+    })
+}
+
+//Select Multiple Chose.js for user
+var user = document.querySelector(".chosen-select-user")
+if (user !== null) {
+    user.classList.add("hidden")
+
+    var div2 = document.createElement("div");
+
+    var options2 = Array.from(user.options)
+    var selected2 = ""
+    var choices2 = []
+
+
+    options2.map(function (element) {
+            choices2.push(
+                {
+                    label: element.label,
+                    value: element.value
+                }
+            )
+        }
+    )
+
+    options2.map(function (element) {
+            if (element.selected === true) {
+                selected2 = element.value
+            }
+        }
+    )
+
+    div2.classList.add("new-select-user")
+    div2.name = user.name
+    user.parentNode.appendChild(div2)
+
+
+    var instance2 = new SelectPure(".new-select-user", {
+        placeholder: false,
+        options: choices2,
+        multiple: false,
+        autocomplete: true,
+        value: selected2,
+        icon: "fa fa-times", // uses Font Awesome
+        inlineIcon: false, // custom cross icon for multiple select.
+        classNames: {
+            select: "select-pure__select",
+            dropdownShown: "select-pure__select--opened",
+            label: "select-pure__label",
+            placeholder: "select-pure__placeholder",
+            dropdown: "select-pure__options",
+            option: "select-pure__option",
+            autocompleteInput: "select-pure__autocomplete",
+            selectedLabel: "select-pure__selected-label",
+            selectedOption: "select-pure__option--selected",
+            placeholderHidden: "select-pure__placeholder--hidden",
+            optionHidden: "select-pure__option--hidden",
+        },
+        onChange: function (el) {
+            for (var i2 = 0; i2 < options2.length; i2++) {
+                options2[i2].selected = false;
+            }
+                options2.find(c => c.value == el).selected = true
         }
     })
 }
