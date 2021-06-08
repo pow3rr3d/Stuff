@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Subcategory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,9 +19,15 @@ class ProductType extends AbstractType
 {
     private $em;
 
+    private $choices;
+
+
     public function __construct(EntityManagerInterface $manager)
     {
         $this->em = $manager;
+
+        $this->choices = $this->em->getRepository(Subcategory::class)->findAll();
+
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -38,12 +45,18 @@ class ProductType extends AbstractType
             ])
             ->add('color')
             ->add('subcategory', ChoiceType::class, [
-                "choices" => [
-                    $this->em->getRepository(Subcategory::class)->findAll()
-                ],
-                'choice_label' => "name"
+                "choices" => $this->choices,
+                'choice_label' => "name",
+                'group_by' => function ($choice, $key, $value) {
+                    if ($choice->getCategory()) {
+                        return $choice->getCategory()->getName();
+                    }
+
+                    return strtoupper($key);
+                },
             ])
-            ->add("imageFile", FileType::class, [
+            ->
+            add("imageFile", FileType::class, [
                 "required" => false,
                 "attr" => [
                     "class" => "form-control"
